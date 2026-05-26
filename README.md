@@ -54,6 +54,10 @@ pm_agent.run                (AGENT)     inputs: issue/discussion/top counts, mod
 └─ claude.synthesize_report (LLM)       input: full prompt · output: report markdown
 ```
 
+![A pm_agent run as a span tree in Arize, with the claude.synthesize_report LLM span selected to show its prompt input](evals_arize.png)
+
+*A single run in Arize: the full span tree, with the `claude.synthesize_report` LLM span's prompt shown in the Input panel.*
+
 ### Running evaluations
 
 The span tree is shaped for two kinds of Arize evals out of the box:
@@ -91,6 +95,10 @@ python3 evals.py                                  # Layer 1 only (free)
 python3 evals.py --judge --out data/eval_report.json   # + LLM judge, save scorecard
 ```
 
+![Designing the Citation Faithfulness eval: a deterministic ref-existence layer plus an LLM-as-judge claim-support layer](evals.png)
+
+*Designing the eval — the deterministic ref-grounding layer and the LLM-as-judge claim-support layer.*
+
 ## Priority Scoring eval (`score_eval.py`)
 
 Validates the heuristic that assigns each issue/discussion a **P8…P3** priority,
@@ -116,6 +124,10 @@ in two parts:
 python3 score_eval.py                                   # Part A only (free)
 python3 score_eval.py --judge --sample 40 --out data/score_eval.json
 ```
+
+![Scoping the Priority Scoring eval: checking both formula correctness and judgment quality, using rank correlation rather than absolute bucket match](evals_llm.png)
+
+*Scoping the eval — checking both formula correctness and judgment quality, with ranking agreement (not absolute bucket match) as the metric.*
 
 Enable it by exporting your Arize credentials before running:
 
