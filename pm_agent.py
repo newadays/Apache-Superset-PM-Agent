@@ -64,6 +64,7 @@ OI_INPUT_MIME = "input.mime_type"
 OI_OUTPUT_MIME = "output.mime_type"
 OI_TOOL_NAME = "tool.name"
 OI_METADATA = "metadata"
+OI_RETRIEVAL_DOCUMENTS = "retrieval.documents"  # + ".{i}.document.{id,content,score,metadata}"
 
 _TRACER = None
 _TRACER_PROVIDER = None
@@ -389,9 +390,39 @@ def assign_priorities(items: list[Item]) -> None:
 # ----------------------------------------------------------------------------
 
 
-def build_prompt(items: list[Item], releases: list[dict], top_n: int) -> str:
-    top = sorted(items, key=lambda x: x.score, reverse=True)[:top_n]
+def select_top_items(items: list[Item], top_n: int) -> list[Item]:
+    """The highest-scored items — the 'retrieval' that feeds the LLM."""
+    return sorted(items, key=lambda x: x.score, reverse=True)[:top_n]
 
+
+def emit_retrieval_documents(sp, top: list[Item]) -> None:
+    """Record the top items as OpenInference retrieval documents on a RETRIEVER
+    span, so Arize can run relevance/precision evals on what was fed to Claude."""
+    if sp is None:
+        return
+    attrs: dict = {OI_OUTPUT_VALUE: f"{len(top)} documents"}
+    for i, it in enumerate(top):
+        base = f"{OI_RETRIEVAL_DOCUMENTS}.{i}.document"
+        attrs[f"{base}.id"] = f"{it.kind} #{it.number}"
+        attrs[f"{base}.content"] = (f"{it.title}\n\n{it.body_excerpt}").strip()[:1200]
+        attrs[f"{base}.score"] = it.score
+        attrs[f"{base}.metadata"] = json.dumps(
+            {
+                "priority": it.priority,
+                "type": it.item_type,
+                "reactions": it.reactions,
+                "comments": it.comments,
+                "days_old": round(it.days_since_created),
+                "days_since_update": round(it.days_since_update),
+                "labels": it.labels[:8],
+                "category": it.category,
+                "url": it.url,
+            }
+        )
+    _set_attrs(sp, attrs)
+
+
+def build_prompt(items: list[Item], top: list[Item], releases: list[dict]) -> str:
     rel_lines = []
     for r in releases[:12]:
         tag = r.get("tag") or ""
@@ -428,6 +459,13 @@ def build_prompt(items: list[Item], releases: list[dict], top_n: int) -> str:
     return f"""You are a senior Product Manager for Apache Superset (open-source data
 exploration & dashboarding platform). You have been handed pre-scored signal
 mined from the GitHub repository. Produce a crisp, executive-ready PM report.
+
+OUTPUT CONTRACT (read first):
+- Your entire response must BE the report itself, in Markdown, written to stdout.
+- Do NOT use any tools, do NOT write or edit files, do NOT ask for approval or
+  confirmation, and do NOT add any preamble, sign-off, or meta commentary about
+  what you are about to do. The text below "## Your task" is the report to write
+  here and now, not a request to act on later. Start directly with the report.
 
 ## Context
 
@@ -470,6 +508,10 @@ Rules:
 - Distinguish bugs (active pain) from feature requests (latent demand).
 - Note when something correlates with a recent release.
 - Keep it skimmable. Use tables where they help. No fluff.
+
+Begin the report now. Output ONLY the Markdown report (starting with the
+"## 1. Executive summary" section) — no tool use, no file writes, no questions,
+no preamble.
 """
 
 
@@ -624,7 +666,16 @@ def _run(args) -> int:
             return 0
 
         print("[3/4] Synthesizing report with Claude...", file=sys.stderr)
-        prompt = build_prompt(items, releases, args.top)
+        with span(
+            "select_top_signal",
+            kind="RETRIEVER",
+            attributes={
+                OI_INPUT_VALUE: f"top {args.top} highest-signal items (by engagement+recency score) for the PM report",
+            },
+        ) as rsp:
+            top = select_top_items(items, args.top)
+            emit_retrieval_documents(rsp, top)
+        prompt = build_prompt(items, top, releases)
         (DATA_DIR / "prompt.txt").write_text(prompt)
         report_body = call_claude(prompt, model=args.model)
 

@@ -1,0 +1,61 @@
+{
+  "part_a_formula": {
+    "n": 370,
+    "score_tol": 0.05,
+    "score_matches": 370,
+    "score_mismatches": [],
+    "priority_matches": 370,
+    "priority_real_mismatches": [],
+    "priority_tie_mismatches": 0
+  },
+  "part_b_ranking": {
+    "n": 40,
+    "spearman": 0.683,
+    "kendall": 0.541,
+    "bucket_mean_importance": {
+      "P8": 7.0,
+      "P7": 5.0,
+      "P6": 5.4,
+      "P5": 4.67,
+      "P4": 3.36,
+      "P3": 3.18
+    },
+    "disagreements": [
+      {
+        "ref": "issue #39539",
+        "priority": "P3",
+        "score": 0.701,
+        "importance": 4.0,
+        "why": "TS migration tracking; internal tech debt"
+      },
+      {
+        "ref": "issue #34839",
+        "priority": "P3",
+        "score": 7.61,
+        "importance": 4.0,
+        "why": "Missing transitive dependency on install"
+      },
+      {
+        "ref": "issue #34998",
+        "priority": "P7",
+        "score": 33.136,
+        "importance": 4.0,
+        "why": "Likely user network config; needs more info"
+      },
+      {
+        "ref": "issue #40167",
+        "priority": "P3",
+        "score": 8.518,
+        "importance": 4.0,
+        "why": "Drill-to-detail datetime shown as integers"
+      },
+      {
+        "ref": "issue #34269",
+        "priority": "P5",
+        "score": 18.017,
+        "importance": 7.0,
+        "why": "Broken 4.1.3 release; scheduler fails to start"
+      }
+    ]
+  }
+}

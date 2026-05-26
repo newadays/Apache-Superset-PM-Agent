@@ -44,13 +44,77 @@ spans to [Arize](https://arize.com) when credentials are present, so each run is
 observable as a span tree:
 
 ```
-pm_agent.run                (AGENT)   inputs: issue/discussion/top counts, model
+pm_agent.run                (AGENT)     inputs: issue/discussion/top counts, model
 ├─ fetch_github_data        (CHAIN)
 │  ├─ fetch_releases        (TOOL)
 │  ├─ fetch_issues          (TOOL)
 │  └─ fetch_discussions     (TOOL)
-├─ score_and_prioritize     (CHAIN)   output: priority distribution
-└─ claude.synthesize_report (LLM)     input: full prompt · output: report markdown
+├─ score_and_prioritize     (CHAIN)     output: priority distribution
+├─ select_top_signal        (RETRIEVER) the top-N scored items as documents
+└─ claude.synthesize_report (LLM)       input: full prompt · output: report markdown
+```
+
+### Running evaluations
+
+The span tree is shaped for two kinds of Arize evals out of the box:
+
+- **Retrieval relevance / precision** on `select_top_signal` — each top item is
+  emitted as a retrieval document (`document.id` = e.g. `issue #12345`,
+  `document.content` = title + excerpt, `document.score` = its priority score,
+  `document.metadata` = priority/type/reactions/labels/url). Run a relevance
+  judge to check whether the highest-scored items are genuinely PM-worthy.
+- **QA / groundedness** on `claude.synthesize_report` — the LLM span carries the
+  full prompt (`input.value`) and the generated report (`output.value`), so an
+  LLM-as-judge can score whether the report is grounded in the items it was
+  given and free of hallucinated issue refs.
+
+For a ready-to-run version of the second eval, see `evals.py` below.
+
+## Citation Faithfulness eval (`evals.py`)
+
+An offline eval that audits the generated report against the items actually fed
+to Claude — the agent's core contract is "cite item refs, tie claims to the
+data". It runs on the artifacts a normal run already writes (`report.md`,
+`data/prompt.txt`, `data/scored_items.json`), in two layers:
+
+- **Layer 1 — ref grounding (deterministic, free, always runs).** Every `#NNNNN`
+  cited in the report is classified `grounded` (in the top-N fed to Claude),
+  `not-in-fed` (real item that was mined but not fed), or `fabricated` (exists
+  nowhere in the corpus → likely hallucinated). Exits non-zero on any fabricated
+  ref, so it can gate CI.
+- **Layer 2 — claim support (LLM-as-judge, `--judge`).** Each report line citing
+  a fed item is judged `supported` / `partial` / `unsupported` against that
+  item's content, catching overstated or misattributed claims that Layer 1 can't.
+
+```bash
+python3 evals.py                                  # Layer 1 only (free)
+python3 evals.py --judge --out data/eval_report.json   # + LLM judge, save scorecard
+```
+
+## Priority Scoring eval (`score_eval.py`)
+
+Validates the heuristic that assigns each issue/discussion a **P8…P3** priority,
+in two parts:
+
+- **Part A — formula correctness (deterministic, free, always runs).**
+  Independently re-derives every item's score and priority bucket from the
+  documented formula and compares to `data/scored_items.json`. It imports only
+  the tunable *constants* from `pm_agent` (weights, half-life, percentile table)
+  and reimplements the *structure*, so it catches a broken formula or data drift
+  without false-flagging a deliberate re-tuning. Recency needs the run's "now",
+  recovered from report.md's `_Generated … UTC_` line. Exits non-zero on a real
+  mismatch (tie-boundary artifacts are reported separately as benign).
+- **Part B — ranking quality (LLM-as-judge, `--judge`).** An LLM PM rates each
+  sampled item's importance 1–10 from its content alone — **never seeing the
+  heuristic score or priority** — and we report rank correlation (Spearman ρ /
+  Kendall τ) against the heuristic, plus mean judge rating per bucket (which
+  should rise P3→P8). Because buckets are relative percentiles, *ranking*
+  agreement, not absolute-label match, is the meaningful signal. Items are
+  sampled evenly across the score range so the judge sees the full spread.
+
+```bash
+python3 score_eval.py                                   # Part A only (free)
+python3 score_eval.py --judge --sample 40 --out data/score_eval.json
 ```
 
 Enable it by exporting your Arize credentials before running:

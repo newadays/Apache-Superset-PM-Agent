@@ -2,6 +2,13 @@ You are a senior Product Manager for Apache Superset (open-source data
 exploration & dashboarding platform). You have been handed pre-scored signal
 mined from the GitHub repository. Produce a crisp, executive-ready PM report.
 
+OUTPUT CONTRACT (read first):
+- Your entire response must BE the report itself, in Markdown, written to stdout.
+- Do NOT use any tools, do NOT write or edit files, do NOT ask for approval or
+  confirmation, and do NOT add any preamble, sign-off, or meta commentary about
+  what you are about to do. The text below "## Your task" is the report to write
+  here and now, not a request to act on later. Start directly with the report.
+
 ## Context
 
 Recent releases (newest first):
@@ -18,7 +25,7 @@ Recent releases (newest first):
 - 6.0.0rc4 (prerelease) — 2025-12-04
 - 6.0.0rc3 (prerelease) — 2025-11-20
 
-Corpus analyzed: 400 items total — type breakdown: {"other": 177, "bug": 100, "feature": 43, "question": 80}.
+Corpus analyzed: 370 items total — type breakdown: {"other": 168, "bug": 100, "feature": 38, "question": 64}.
 Below are the top 70 highest-scored issues & discussions. Each already
 carries a heuristic priority (P8 highest .. P3 lowest) and an engagement score
 derived from reactions, comments, recency, and bug-vs-feature weighting.
@@ -28,13 +35,13 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #31026",
   "priority": "P8",
-  "score": 44.129,
+  "score": 44.098,
   "type": "bug",
   "title": "Helm upgrade from 4.0.2 -> 4.1.1 fails as psycopg2 is no longer bundled into lean Superset image",
   "reactions": 19,
   "comments": 25,
   "days_old": 551,
-  "days_since_update": 32,
+  "days_since_update": 33,
   "labels": [
    "install:dependencies"
   ],
@@ -45,7 +52,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "discussion #36763",
   "priority": "P8",
-  "score": 41.816,
+  "score": 41.783,
   "type": "feature",
   "title": "[Helm] Request to update Helm Chart to support Superset 6.0.0",
   "reactions": 28,
@@ -60,7 +67,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "discussion #31431",
   "priority": "P8",
-  "score": 40.66,
+  "score": 40.632,
   "type": "bug",
   "title": "ModuleNotFoundError: No module named 'psycopg2' during k8 installation",
   "reactions": 13,
@@ -75,7 +82,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #20459",
   "priority": "P8",
-  "score": 40.174,
+  "score": 40.145,
   "type": "bug",
   "title": "[DECK.GL MULTIPLE LAYERS] Categorical color from scatterplot not used",
   "reactions": 10,
@@ -93,7 +100,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #31033",
   "priority": "P8",
-  "score": 39.518,
+  "score": 39.486,
   "type": "bug",
   "title": "Inconsistent Default Padding for Different Charts",
   "reactions": 0,
@@ -114,12 +121,12 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "discussion #27607",
   "priority": "P8",
-  "score": 39.297,
+  "score": 39.27,
   "type": "feature",
   "title": "Unable to download detailed records in \"Drill to detail\" and \"Drill to Detail by\"",
   "reactions": 34,
   "comments": 24,
-  "days_old": 938,
+  "days_old": 939,
   "days_since_update": 34,
   "labels": [],
   "category": "Ideas",
@@ -129,13 +136,13 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "discussion #18451",
   "priority": "P8",
-  "score": 38.569,
+  "score": 38.539,
   "type": "feature",
   "title": "Make possible to disable the annoying \"This dashboard is currently force refreshing\" message",
   "reactions": 16,
   "comments": 20,
   "days_old": 1922,
-  "days_since_update": 19,
+  "days_since_update": 20,
   "labels": [],
   "category": "Ideas",
   "url": "https://github.com/apache/superset/discussions/18451",
@@ -144,7 +151,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #39682",
   "priority": "P8",
-  "score": 38.376,
+  "score": 38.345,
   "type": "bug",
   "title": "after upgrading to 6.0.0 the embedding dashboarding is broken",
   "reactions": 0,
@@ -163,7 +170,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #25307",
   "priority": "P8",
-  "score": 37.813,
+  "score": 37.781,
   "type": "other",
   "title": "Data preview for trino tables does not work for all trino connection types",
   "reactions": 13,
@@ -180,7 +187,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "discussion #20271",
   "priority": "P8",
-  "score": 37.62,
+  "score": 37.59,
   "type": "question",
   "title": "Where is the M1 Mac chipset supported Apache Superset ?",
   "reactions": 35,
@@ -195,7 +202,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #38456",
   "priority": "P8",
-  "score": 37.294,
+  "score": 37.265,
   "type": "other",
   "title": "Superset 6.0.0 Helm Chart Not Available",
   "reactions": 26,
@@ -212,7 +219,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #35003",
   "priority": "P8",
-  "score": 35.959,
+  "score": 35.935,
   "type": "feature",
   "title": "[SIP-182] Semantic Layer Support in Apache Superset",
   "reactions": 23,
@@ -230,7 +237,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #33044",
   "priority": "P7",
-  "score": 35.448,
+  "score": 35.422,
   "type": "feature",
   "title": "[SIP-163] Archiving Dashboards",
   "reactions": 14,
@@ -249,13 +256,13 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #35833",
   "priority": "P7",
-  "score": 35.315,
+  "score": 35.289,
   "type": "bug",
   "title": "Dropdown menu shows 2 scroll bars.",
   "reactions": 0,
   "comments": 19,
   "days_old": 214,
-  "days_since_update": 22,
+  "days_since_update": 23,
   "labels": [
    "good first issue",
    "#bug:cosmetic"
@@ -267,7 +274,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #21734",
   "priority": "P7",
-  "score": 34.686,
+  "score": 34.658,
   "type": "bug",
   "title": "Uncertainty intervals of forecast are wrong when it goes negative.",
   "reactions": 0,
@@ -284,7 +291,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #37892",
   "priority": "P7",
-  "score": 34.15,
+  "score": 34.122,
   "type": "bug",
   "title": "Time-series Table: sorting always based on first column in v6.0.0",
   "reactions": 2,
@@ -303,13 +310,13 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #36117",
   "priority": "P7",
-  "score": 34.041,
+  "score": 34.012,
   "type": "other",
   "title": "Remote user auth (AUTH_REMOTE_USER) worked well in 5.0.0, experienced issues with 6.0.0rc2",
   "reactions": 7,
   "comments": 13,
   "days_old": 193,
-  "days_since_update": 1,
+  "days_since_update": 2,
   "labels": [
    "authentication"
   ],
@@ -320,7 +327,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #36145",
   "priority": "P7",
-  "score": 33.416,
+  "score": 33.39,
   "type": "feature",
   "title": "[SIP-192] Labeled Version History + Restore",
   "reactions": 5,
@@ -338,7 +345,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #39492",
   "priority": "P7",
-  "score": 33.2,
+  "score": 33.172,
   "type": "feature",
   "title": "[SIP-210] Entity Version History for Dashboards, Charts, and Datasets",
   "reactions": 3,
@@ -356,7 +363,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #34998",
   "priority": "P7",
-  "score": 33.152,
+  "score": 33.128,
   "type": "bug",
   "title": "superset 6.0.0rc1-dev use External database \uff0cerror",
   "reactions": 0,
@@ -375,7 +382,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "discussion #31982",
   "priority": "P7",
-  "score": 32.749,
+  "score": 32.725,
   "type": "feature",
   "title": "Allow target Attribute in Markdown Links for Opening Links in a New Tab",
   "reactions": 13,
@@ -390,7 +397,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #35414",
   "priority": "P7",
-  "score": 32.498,
+  "score": 32.473,
   "type": "bug",
   "title": "[6.0.0-RC2] Oracle Database Bar Char Error: ORA-00979: not a GROUP BY expression",
   "reactions": 0,
@@ -408,7 +415,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #31872",
   "priority": "P7",
-  "score": 32.228,
+  "score": 32.206,
   "type": "bug",
   "title": "4.0.2 - Imported charts shows error on embedding (Guest user cannot modify chart payload)",
   "reactions": 1,
@@ -427,7 +434,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #25825",
   "priority": "P7",
-  "score": 31.916,
+  "score": 31.894,
   "type": "other",
   "title": "Kubernetes deployments only load example SQLite data into a single pod, causes \"no such table: main.FCC 2018 Survey\"",
   "reactions": 5,
@@ -442,7 +449,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #35174",
   "priority": "P7",
-  "score": 31.875,
+  "score": 31.852,
   "type": "bug",
   "title": "superset helm 0.15.0 chart broken",
   "reactions": 5,
@@ -460,7 +467,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #28713",
   "priority": "P7",
-  "score": 31.827,
+  "score": 31.801,
   "type": "other",
   "title": "Problem Exporting Charts as Image",
   "reactions": 5,
@@ -477,7 +484,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #33882",
   "priority": "P7",
-  "score": 31.169,
+  "score": 31.146,
   "type": "bug",
   "title": "Show value on stacked bar chart is incorrect",
   "reactions": 0,
@@ -495,13 +502,13 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #39965",
   "priority": "P7",
-  "score": 31.102,
+  "score": 31.076,
   "type": "feature",
   "title": "[SIP-212] Browser Print PDF Dashboard Reports",
   "reactions": 4,
   "comments": 5,
   "days_old": 18,
-  "days_since_update": 0,
+  "days_since_update": 1,
   "labels": [
    "sip",
    "dashboard:export",
@@ -514,7 +521,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #33905",
   "priority": "P7",
-  "score": 30.8,
+  "score": 30.776,
   "type": "bug",
   "title": "Last month doesn't appear on X axis for Time Series Line Chart",
   "reactions": 0,
@@ -534,7 +541,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #34997",
   "priority": "P7",
-  "score": 30.652,
+  "score": 30.627,
   "type": "bug",
   "title": "Error fetching table metadata + 404 on /ws + SupersetParseError (Unexpected token) in SQL Lab",
   "reactions": 0,
@@ -551,7 +558,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #37427",
   "priority": "P7",
-  "score": 30.54,
+  "score": 30.517,
   "type": "feature",
   "title": "[SIP-203] Git-backed Version Control for Datasets in Apache Superset",
   "reactions": 8,
@@ -569,7 +576,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #33896",
   "priority": "P7",
-  "score": 30.41,
+  "score": 30.388,
   "type": "bug",
   "title": "Treemap tooltip  css",
   "reactions": 1,
@@ -587,7 +594,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #28115",
   "priority": "P7",
-  "score": 30.409,
+  "score": 30.386,
   "type": "bug",
   "title": "Minified React error",
   "reactions": 3,
@@ -602,7 +609,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #32879",
   "priority": "P7",
-  "score": 30.408,
+  "score": 30.386,
   "type": "bug",
   "title": "Field names with multiple spaces cause unexpected error, need nontrivial manual fix",
   "reactions": 0,
@@ -619,7 +626,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #34130",
   "priority": "P7",
-  "score": 30.408,
+  "score": 30.385,
   "type": "bug",
   "title": "Error on SQL Lab screen \"The database that was used to generate this query could not be found\"",
   "reactions": 0,
@@ -636,7 +643,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #40225",
   "priority": "P7",
-  "score": 30.382,
+  "score": 30.357,
   "type": "bug",
   "title": "MCP user resolution not working in release 6.1.0",
   "reactions": 2,
@@ -654,13 +661,13 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #33757",
   "priority": "P7",
-  "score": 30.251,
+  "score": 30.228,
   "type": "bug",
   "title": "Tooltip ignores metric format in line charts (always shows dollar format) \u2013 Regression in 4.X",
   "reactions": 1,
   "comments": 9,
   "days_old": 348,
-  "days_since_update": 21,
+  "days_since_update": 22,
   "labels": [
    "#bug:regression",
    "viz:charts:line"
@@ -671,8 +678,8 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  },
  {
   "ref": "issue #38806",
-  "priority": "P7",
-  "score": 29.589,
+  "priority": "P6",
+  "score": 29.567,
   "type": "bug",
   "title": "MCP service: Flask app context error when running via 'superset mcp run'",
   "reactions": 2,
@@ -688,8 +695,8 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  },
  {
   "ref": "issue #33361",
-  "priority": "P7",
-  "score": 29.587,
+  "priority": "P6",
+  "score": 29.565,
   "type": "bug",
   "title": "\"Clear All Filters\" sets required time filter to 'No filter', causing downstream filters to error",
   "reactions": 0,
@@ -706,8 +713,8 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  },
  {
   "ref": "issue #33235",
-  "priority": "P7",
-  "score": 29.587,
+  "priority": "P6",
+  "score": 29.565,
   "type": "bug",
   "title": "Filtering on Boolean columns has a limitation in Snowflake (and possibly other databases)",
   "reactions": 1,
@@ -726,7 +733,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #39464",
   "priority": "P6",
-  "score": 29.342,
+  "score": 29.32,
   "type": "feature",
   "title": "[SIP-208] Soft Delete for Charts, Dashboards, and Datasets",
   "reactions": 3,
@@ -744,7 +751,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "discussion #30575",
   "priority": "P6",
-  "score": 28.739,
+  "score": 28.716,
   "type": "other",
   "title": "Allow ordering/sorting of categorical x-axis values by another variable",
   "reactions": 9,
@@ -759,7 +766,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #34422",
   "priority": "P6",
-  "score": 28.692,
+  "score": 28.67,
   "type": "bug",
   "title": "ModuleNotFoundError and MyCustomclass which is derived from IndexView in superset_config.py",
   "reactions": 0,
@@ -776,7 +783,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #38310",
   "priority": "P6",
-  "score": 28.577,
+  "score": 28.553,
   "type": "bug",
   "title": "building apache-superset-core fails due to incompatibility of sqlglot",
   "reactions": 1,
@@ -794,12 +801,12 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #37114",
   "priority": "P6",
-  "score": 28.53,
+  "score": 28.506,
   "type": "bug",
   "title": "enabling async execution results in HTTP error 422 - Unprocessable Content",
   "reactions": 0,
   "comments": 6,
-  "days_old": 132,
+  "days_old": 133,
   "days_since_update": 1,
   "labels": [
    "global:async-query"
@@ -811,7 +818,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #39209",
   "priority": "P6",
-  "score": 28.479,
+  "score": 28.456,
   "type": "feature",
   "title": "[SIP-207] Replace Redux with Zustand and TanStack Query",
   "reactions": 2,
@@ -830,7 +837,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #39834",
   "priority": "P6",
-  "score": 28.428,
+  "score": 28.405,
   "type": "bug",
   "title": "DatabaseRestApi.get_list and DatasetRestApi.get_list return count:0 for JWT-authenticated Admin users in 6.0.1",
   "reactions": 0,
@@ -849,7 +856,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #39967",
   "priority": "P6",
-  "score": 28.427,
+  "score": 28.403,
   "type": "bug",
   "title": "Permission dropdown in `Role Edit Form` fails to echo names of bound permissions",
   "reactions": 1,
@@ -868,7 +875,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #39951",
   "priority": "P6",
-  "score": 28.296,
+  "score": 28.272,
   "type": "bug",
   "title": "Superset 6.0.0 bug: Could not convert string '849' to numeric",
   "reactions": 0,
@@ -887,7 +894,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #33206",
   "priority": "P6",
-  "score": 27.834,
+  "score": 27.812,
   "type": "other",
   "title": "Incorrect filtering for numeric values with different decimal precision",
   "reactions": 0,
@@ -904,7 +911,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #34135",
   "priority": "P6",
-  "score": 27.828,
+  "score": 27.806,
   "type": "bug",
   "title": "Dashboard Filter dropdown input obscured on smaller screens views",
   "reactions": 0,
@@ -923,12 +930,12 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #32836",
   "priority": "P6",
-  "score": 26.77,
+  "score": 26.749,
   "type": "other",
   "title": "Login Screen Unintentionally Displayed in Version 4.1.2(Occurs also in 5.0.0 rc2)",
   "reactions": 3,
   "comments": 13,
-  "days_old": 427,
+  "days_old": 428,
   "days_since_update": 21,
   "labels": [
    "authentication:access-control",
@@ -941,7 +948,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #24290",
   "priority": "P6",
-  "score": 26.762,
+  "score": 26.74,
   "type": "other",
   "title": "supersetCanCSV property naming could be better",
   "reactions": 1,
@@ -959,7 +966,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #26254",
   "priority": "P6",
-  "score": 26.742,
+  "score": 26.722,
   "type": "other",
   "title": "Bar chart spilling out past x-axis on both ends",
   "reactions": 0,
@@ -976,7 +983,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #35581",
   "priority": "P6",
-  "score": 26.62,
+  "score": 26.601,
   "type": "bug",
   "title": "language_pack/ru/:1   Failed to load resource: the server responded with a status of 404 (NOT FOUND)",
   "reactions": 0,
@@ -993,7 +1000,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #38926",
   "priority": "P6",
-  "score": 26.62,
+  "score": 26.6,
   "type": "bug",
   "title": "[Bug] UI freezes / browser hangs for 6 seconds every time \"Download as image\" is clicked on a chart. freeze does not improve on repeated downloads",
   "reactions": 0,
@@ -1011,7 +1018,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #34543",
   "priority": "P6",
-  "score": 26.618,
+  "score": 26.598,
   "type": "bug",
   "title": "Superset Embedded Dashboard Cache Retrieval Fails with Multi-Parameter Jinja Filters",
   "reactions": 2,
@@ -1029,7 +1036,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #34784",
   "priority": "P6",
-  "score": 26.473,
+  "score": 26.454,
   "type": "other",
   "title": "[Superset 6.0.0rc1] Calculated Column isn't working and generate wrong SQL with ClickHouse",
   "reactions": 0,
@@ -1047,7 +1054,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #35461",
   "priority": "P6",
-  "score": 26.021,
+  "score": 26.001,
   "type": "other",
   "title": "Helm chart 0.15.1 released but not published",
   "reactions": 4,
@@ -1062,24 +1069,9 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
   "excerpt": "### Bug description 0.15.1 superset chart was released last week, but has not yet been published into https://apache.github.io/superset repository. Above from that, current 0.15.1 chart is broken, due to infamous Bitnami repositories being deprecated. Not trying to get on politics or suggest what to decide, but a quick workaround could be switching to bitnamilegacy (which most people including myself wont suggest, but is honestly the quickest workaround to fix it). Any chances to get 6.x at leas"
  },
  {
-  "ref": "discussion #22836",
-  "priority": "P6",
-  "score": 25.751,
-  "type": "feature",
-  "title": "Apply native filters to annotation layers",
-  "reactions": 10,
-  "comments": 4,
-  "days_old": 1219,
-  "days_since_update": 54,
-  "labels": [],
-  "category": "Ideas",
-  "url": "https://github.com/apache/superset/discussions/22836",
-  "excerpt": "Dashboard native filters don't appear to be pushed down to the datasets that drive annotation layers. I recently tried to visualize an upper bound using a time series annotation layer on a line chart. I wanted to use an annotation layer because I wanted to control the style of the upper bound line. Unfortunately, my annotation layer did not update when I applied a filter from my dashboard. This may be related to #18744."
- },
- {
   "ref": "issue #34748",
   "priority": "P6",
-  "score": 25.71,
+  "score": 25.691,
   "type": "other",
   "title": "No data on mapbox with Deck.gl GeoJSON chart",
   "reactions": 0,
@@ -1098,7 +1090,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #33737",
   "priority": "P6",
-  "score": 25.395,
+  "score": 25.376,
   "type": "bug",
   "title": "\"Show chart description\" causes bottom of x-axis to be cut off heatmap in 5.0.0rc3",
   "reactions": 0,
@@ -1118,7 +1110,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #33347",
   "priority": "P6",
-  "score": 25.393,
+  "score": 25.375,
   "type": "bug",
   "title": "Reconnection to PostgreSQL fails",
   "reactions": 0,
@@ -1135,7 +1127,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #29378",
   "priority": "P6",
-  "score": 25.393,
+  "score": 25.375,
   "type": "bug",
   "title": "Calculated column jinja templating fails in ORDER BY clause ",
   "reactions": 0,
@@ -1152,7 +1144,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #36776",
   "priority": "P6",
-  "score": 24.68,
+  "score": 24.66,
   "type": "bug",
   "title": "Table Drill to detail by date error",
   "reactions": 0,
@@ -1172,7 +1164,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "discussion #18477",
   "priority": "P6",
-  "score": 24.571,
+  "score": 24.553,
   "type": "feature",
   "title": "Identical names of Datasets from different databases running the same application",
   "reactions": 2,
@@ -1187,13 +1179,13 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #36878",
   "priority": "P6",
-  "score": 24.551,
+  "score": 24.533,
   "type": "other",
   "title": "Apache Superset 6.0.0 Global echartsOptionsOverrides and specific echartsOptionsOverridesByChartType",
   "reactions": 1,
   "comments": 16,
   "days_old": 146,
-  "days_since_update": 31,
+  "days_since_update": 32,
   "labels": [
    "global:theming",
    "viz:charts"
@@ -1205,7 +1197,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #32260",
   "priority": "P6",
-  "score": 24.4,
+  "score": 24.382,
   "type": "other",
   "title": "Issue with Incorrect Subtotal and Sum Calculation of Completion Percentage in Pivot Table",
   "reactions": 2,
@@ -1222,12 +1214,12 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "issue #24511",
   "priority": "P6",
-  "score": 24.4,
+  "score": 24.382,
   "type": "other",
   "title": "Dependent Filter Issue :- If the parent Filter value is changed then the dependent filter with  previous selected value is not getting removed if its not in the dependent filter data(options) ",
   "reactions": 0,
   "comments": 15,
-  "days_old": 1065,
+  "days_old": 1066,
   "days_since_update": 25,
   "labels": [],
   "category": "",
@@ -1237,7 +1229,7 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
  {
   "ref": "discussion #39784",
   "priority": "P6",
-  "score": 24.186,
+  "score": 24.168,
   "type": "feature",
   "title": "Expectations for first-time Superset pull request authors in the age of AI",
   "reactions": 4,
@@ -1248,6 +1240,23 @@ derived from reactions, comments, recency, and bug-vs-feature weighting.
   "category": "General",
   "url": "https://github.com/apache/superset/discussions/39784",
   "excerpt": "Background This is prompted by a few PRs I've seen recently after tagging an issue \"good first issue\" and by these two blog posts: The Zig project's take on Contributor Poker and AI Simon Willson's writeup of that post I am not proposing a ban on AI-generated code from new contributors. For one thing, the majority of top contributors to Superset seem to be using AI to write and review code and even to comment on GitHub issues. I write my code contributions with AI. But I think there is a phenome"
+ },
+ {
+  "ref": "issue #38629",
+  "priority": "P6",
+  "score": 24.029,
+  "type": "bug",
+  "title": "6.0.0 - Deleting a user via the GUI fails with IntegrityError on MariaDB",
+  "reactions": 0,
+  "comments": 5,
+  "days_old": 74,
+  "days_since_update": 15,
+  "labels": [
+   "data:databases"
+  ],
+  "category": "",
+  "url": "https://github.com/apache/superset/issues/38629",
+  "excerpt": "### Bug description # Bug: Deleting a user via the GUI fails with IntegrityError on MariaDB ## Summary When attempting to delete a user via the Superset Security UI (`Settings \u2192 List Users \u2192 Delete`), the operation fails silently in the UI with \"There was an issue deleting record\" and raises an `IntegrityError` in the backend. The user is not deleted. The root cause is that `flask_appbuilder`'s `delete_user()` performs a bare `DELETE FROM ab_user` without cleaning up dependent rows first, and Ma"
  }
 ]
 
@@ -1279,3 +1288,7 @@ Rules:
 - Distinguish bugs (active pain) from feature requests (latent demand).
 - Note when something correlates with a recent release.
 - Keep it skimmable. Use tables where they help. No fluff.
+
+Begin the report now. Output ONLY the Markdown report (starting with the
+"## 1. Executive summary" section) — no tool use, no file writes, no questions,
+no preamble.

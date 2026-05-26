@@ -1,0 +1,1234 @@
+{
+  "layer1_ref_grounding": {
+    "total_refs_cited": 172,
+    "unique_refs_cited": 58,
+    "grounded": 172,
+    "not_in_fed": [],
+    "fabricated": [],
+    "grounding_rate": 1.0
+  },
+  "layer2_claim_support": {
+    "counts": {
+      "partial": 4,
+      "supported": 49
+    },
+    "verdicts": [
+      {
+        "claim": "The 6.0.0 line (GA 2025-12-18) and the just-shipped 6.1.0 (2026-05-13) are leaking regressions across auth, charting, and DB engines.** At least a dozen top items explicitly cite 6.0.0/6.0.1/6.1.0 \u2014 including the highest-engagement regression, embedding broken after upgrade (#39682). This is the dominant *active* pain signal.",
+        "sources": [
+          {
+            "ref": "issue #39682",
+            "title": "after upgrading to 6.0.0 the embedding dashboarding is broken",
+            "excerpt": "### Bug description 4.1.4 embedding was working fine with guest token but after upgrading to 6.0.0 it is broken In 4.1.4 the emedding dashboarding was working fine with superset. But recently we have upgraded our superset to 6.0.0 version it is giving below error. { \"errors\": [ { \"message\": \"403 For"
+          }
+        ],
+        "label": "partial",
+        "why": "Single source backs embedding bug; 'dozen items'/'highest-engagement'/multi-area claims unverified"
+      },
+      {
+        "claim": "Deployment/Helm is a five-alarm fire and the single most important thing to fix next.** Four P8s converge here: the chart still hasn't officially supported 6.0.0 (#36763, #38456), and a year-old `psycopg2`-missing crash in the lean image still blocks upgrades (#31026, #31431). Users literally cannot deploy the current release through the official path.",
+        "sources": [
+          {
+            "ref": "issue #38456",
+            "title": "Superset 6.0.0 Helm Chart Not Available",
+            "excerpt": "### Bug description Superset 6.0.0 Helm Chart Not Available. Note that https://github.com/apache/superset/issues/35461 may prevent a chart being published even if one is created as evidenced by 0.15.3 and 0.15.4 missing from https://artifacthub.io/packages/helm/superset/superset. ### Screenshots/rec"
+          },
+          {
+            "ref": "issue #31026",
+            "title": "Helm upgrade from 4.0.2 -> 4.1.1 fails as psycopg2 is no longer bundled into lean Superset image",
+            "excerpt": "### Bug description Hi I want to upgrade Superset 4.0.2 to 4.1.1 version using Helm. helm upgrade --install superset superset/superset -f values.yaml I got issue with psycopg2. Help, please. ### Screenshots/recordings Defaulted container \"superset-init-db\" out of: superset-init-db, wait-for-postgres"
+          },
+          {
+            "ref": "discussion #36763",
+            "title": "[Helm] Request to update Helm Chart to support Superset 6.0.0",
+            "excerpt": "Apache Superset version 6.0.0 was recently released (Dec 18, 2025). Currently, the official Helm chart in the apache/superset repository still points to appVersion: 5.0.0. Version 6.0.0 contains several major breaking changes (Ant Design 5 upgrade, Flask-AppBuilder 5.0, removal of AUTH_OID, and inte"
+          },
+          {
+            "ref": "discussion #31431",
+            "title": "ModuleNotFoundError: No module named 'psycopg2' during k8 installation",
+            "excerpt": "Hi, While deploying super set using helm chart, i am getting \"ModuleNotFoundError: No module named 'psycopg2'\" in superset-init-db"
+          }
+        ],
+        "label": "supported",
+        "why": "All four issues confirm chart-not-on-6.x and psycopg2 lean-image crash"
+      },
+      {
+        "claim": "The MCP service \u2014 a flagship new capability \u2014 is broken out of the gate** (#40225 in 6.1.0, #38806 in 6.1.0rc1). High strategic visibility, low reliability.",
+        "sources": [
+          {
+            "ref": "issue #40225",
+            "title": "MCP user resolution not working in release 6.1.0",
+            "excerpt": "> I'm getting the same error message on 6.1.0 with Keycloak. > > 2026-05-18 12:27:22,599:ERROR:superset.mcp_service.middleware:MCP tool error: tool=health_check, user_id=None, duration_ms=62, error_type=ToolError, error=Error calling tool 'health_check': No authenticated user found. Tried: > - g.use"
+          },
+          {
+            "ref": "issue #38806",
+            "title": "MCP service: Flask app context error when running via 'superset mcp run'",
+            "excerpt": "## Bug Description Running `superset mcp run --host 0.0.0.0 --port 5008` starts the MCP server successfully and JWT authentication works, but tool execution immediately fails with a Flask application context error, terminating the session. ## Environment - Superset version: 6.1.0rc1 (Docker image `a"
+          }
+        ],
+        "label": "supported",
+        "why": "Sources confirm MCP failing in 6.1.0 and 6.1.0rc1"
+      },
+      {
+        "claim": "Latent demand is overwhelmingly about versioning, history, and recoverability**: five SIPs (#33044, #36145, #39492, #39464, #37427) all orbit \"let me archive / undo / roll back / version\" assets. This is a coherent product bet waiting to be made.",
+        "sources": [
+          {
+            "ref": "issue #39492",
+            "title": "[SIP-210] Entity Version History for Dashboards, Charts, and Datasets",
+            "excerpt": "## [SIP] Entity Version History for Dashboards, Charts, and Datasets | | | |---------|--------| | **Status** | Open for Voting | | **Authors** | Mike Bridge ([@mikebridge](https://github.com/mikebridge)) | | **Created** | 2026-05-08 | | **Discussion** | _To be added once posted to dev@superset.apach"
+          },
+          {
+            "ref": "issue #39464",
+            "title": "[SIP-208] Soft Delete for Charts, Dashboards, and Datasets",
+            "excerpt": "## [SIP] Soft Delete for Charts, Dashboards, and Datasets > **Terminology note**: The delete action is labelled **Archive** in the UI and the restore action is labelled **Unarchive**. The backend implementation uses standard soft-delete naming (`deleted_at`, `soft_delete()`, `/restore`) because thes"
+          },
+          {
+            "ref": "issue #36145",
+            "title": "[SIP-192] Labeled Version History + Restore",
+            "excerpt": "## [SIP] Proposal for Labeled Version History + Restore ### Motivation Some users want to be able to roll back and have a process to save states of their virtual datasets or other assets. It was mentioned here also https://github.com/apache/superset/issues/30436 that some people were talking about o"
+          },
+          {
+            "ref": "issue #37427",
+            "title": "[SIP-203] Git-backed Version Control for Datasets in Apache Superset",
+            "excerpt": "# SIP: Git-backed Version Control for Datasets in Apache Superset ## 1. Motivation Apache Superset is widely used as a self-service BI and data exploration tool. While charts and dashboards are visually inspectable and often reviewed collaboratively, **datasets\u2014especially SQL-based virtual datasets\u2014"
+          },
+          {
+            "ref": "issue #33044",
+            "title": "[SIP-163] Archiving Dashboards",
+            "excerpt": "*Please make sure you are familiar with the SIP process documented* [here](https://github.com/apache/superset/issues/5602). The SIP will be numbered by a committer upon acceptance. ## [SIP] Proposal for Archiving Dashboards ### Motivation Dashboards have 2 states published and draft. However, there "
+          }
+        ],
+        "label": "supported",
+        "why": "All five SIPs concern archive/soft-delete/version-history/rollback"
+      },
+      {
+        "claim": "#38456 | P8 | \"Superset 6.0.0 Helm Chart Not Available\" (26 reactions) |",
+        "sources": [
+          {
+            "ref": "issue #38456",
+            "title": "Superset 6.0.0 Helm Chart Not Available",
+            "excerpt": "### Bug description Superset 6.0.0 Helm Chart Not Available. Note that https://github.com/apache/superset/issues/35461 may prevent a chart being published even if one is created as evidenced by 0.15.3 and 0.15.4 missing from https://artifacthub.io/packages/helm/superset/superset. ### Screenshots/rec"
+          }
+        ],
+        "label": "supported",
+        "why": "Title matches; reaction count not in excerpt but identity correct"
+      },
+      {
+        "claim": "#36763 | P8 | Request to update chart to 6.0.0 (28 reactions) |",
+        "sources": [
+          {
+            "ref": "discussion #36763",
+            "title": "[Helm] Request to update Helm Chart to support Superset 6.0.0",
+            "excerpt": "Apache Superset version 6.0.0 was recently released (Dec 18, 2025). Currently, the official Helm chart in the apache/superset repository still points to appVersion: 5.0.0. Version 6.0.0 contains several major breaking changes (Ant Design 5 upgrade, Flask-AppBuilder 5.0, removal of AUTH_OID, and inte"
+          }
+        ],
+        "label": "supported",
+        "why": "Discussion matches request to update chart to 6.0.0"
+      },
+      {
+        "claim": "#31026 | P8 | Helm upgrade fails \u2014 `psycopg2` no longer in lean image (19r/25c) |",
+        "sources": [
+          {
+            "ref": "issue #31026",
+            "title": "Helm upgrade from 4.0.2 -> 4.1.1 fails as psycopg2 is no longer bundled into lean Superset image",
+            "excerpt": "### Bug description Hi I want to upgrade Superset 4.0.2 to 4.1.1 version using Helm. helm upgrade --install superset superset/superset -f values.yaml I got issue with psycopg2. Help, please. ### Screenshots/recordings Defaulted container \"superset-init-db\" out of: superset-init-db, wait-for-postgres"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms psycopg2 missing from lean image on upgrade"
+      },
+      {
+        "claim": "#31431 | P8 | Same `psycopg2` crash on k8s install |",
+        "sources": [
+          {
+            "ref": "discussion #31431",
+            "title": "ModuleNotFoundError: No module named 'psycopg2' during k8 installation",
+            "excerpt": "Hi, While deploying super set using helm chart, i am getting \"ModuleNotFoundError: No module named 'psycopg2'\" in superset-init-db"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms psycopg2 ModuleNotFoundError during k8s install"
+      },
+      {
+        "claim": "#35461 | P6 | 0.15.1 released but not published; Bitnami deprecation breakage |",
+        "sources": [
+          {
+            "ref": "issue #35461",
+            "title": "Helm chart 0.15.1 released but not published",
+            "excerpt": "### Bug description 0.15.1 superset chart was released last week, but has not yet been published into https://apache.github.io/superset repository. Above from that, current 0.15.1 chart is broken, due to infamous Bitnami repositories being deprecated. Not trying to get on politics or suggest what to"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms unpublished 0.15.1 and Bitnami deprecation breakage"
+      },
+      {
+        "claim": "#35174 | P7 | Helm 0.15.0 broken on bring-your-own-DB |",
+        "sources": [
+          {
+            "ref": "issue #35174",
+            "title": "superset helm 0.15.0 chart broken",
+            "excerpt": "### Bug description When using bring your own DB, the superset-init-db k8s main job breaks under this error: ```pgrading DB schema... Loaded your LOCAL configuration at [/app/pythonpath/superset_config.py] 2025-09-17 12:41:33,296:ERROR:superset.app:Failed to create app Traceback (most recent call la"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms 0.15.0 broken with bring-your-own-DB"
+      },
+      {
+        "claim": "#25825 | P7 | K8s loads example data into one pod only (38 comments) |",
+        "sources": [
+          {
+            "ref": "issue #25825",
+            "title": "Kubernetes deployments only load example SQLite data into a single pod, causes \"no such table: main.FCC 2018 Survey\"",
+            "excerpt": "I have deployed Apache Superset 3.0 using Helm charts. The Helm chart version is superset-0.10.11, and the app version is 3.0.1. I've configured Superset to load example data (loadExamples set to true), but I'm encountering an issue on the dashboard with the error message '**no such table: main.FCC "
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms example data loads into single pod only"
+      },
+      {
+        "claim": "#39682 | P8 | Embedding/guest-token 403 | 6.0.0 |",
+        "sources": [
+          {
+            "ref": "issue #39682",
+            "title": "after upgrading to 6.0.0 the embedding dashboarding is broken",
+            "excerpt": "### Bug description 4.1.4 embedding was working fine with guest token but after upgrading to 6.0.0 it is broken In 4.1.4 the emedding dashboarding was working fine with superset. But recently we have upgraded our superset to 6.0.0 version it is giving below error. { \"errors\": [ { \"message\": \"403 For"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms guest-token 403 embedding break after 6.0.0"
+      },
+      {
+        "claim": "#37892 | P7 | Time-series table sorts only first column | 6.0.0 |",
+        "sources": [
+          {
+            "ref": "issue #37892",
+            "title": "Time-series Table: sorting always based on first column in v6.0.0",
+            "excerpt": "### Bug description ### Summary In Superset **6.0.0**, the **Time-series Table** visualization always sorts rows based on the **first column**, regardless of which column header is clicked. This prevents proper sorting on time series columns. ### Steps to Reproduce 1. Create or open a **Time-series "
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms first-column-only sorting in 6.0.0"
+      },
+      {
+        "claim": "#36117 | P7 | `AUTH_REMOTE_USER` broke; user reverted to 5.0.0 | 6.0.0rc2 |",
+        "sources": [
+          {
+            "ref": "issue #36117",
+            "title": "Remote user auth (AUTH_REMOTE_USER) worked well in 5.0.0, experienced issues with 6.0.0rc2",
+            "excerpt": "### Bug description I did not have much success trying to setup REMOTE_AUTH in Superset 6.0.0 (rc2), in the end I reverted to 5.0.0 and it worked immediately (with config as in `superset_config.py` below). Could this be a regression bug (or breaking change)? ```from flask_appbuilder.security.manager"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms AUTH_REMOTE_USER broke in 6.0.0rc2, reverted to 5.0.0"
+      },
+      {
+        "claim": "#39834 | P6 | JWT Admin gets `count:0` from database/dataset list | 6.0.1 |",
+        "sources": [
+          {
+            "ref": "issue #39834",
+            "title": "DatabaseRestApi.get_list and DatasetRestApi.get_list return count:0 for JWT-authenticated Admin users in 6.0.1",
+            "excerpt": "### Bug description # DatabaseRestApi.get_list and DatasetRestApi.get_list return count:0 for JWT-authenticated Admin users in 6.0.1 **Labels:** `bug`, `needs-triage` --- ## Bug description When authenticating via the REST API using a JWT Bearer token (`POST /api/v1/security/login`), the `/api/v1/da"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms count:0 for JWT Admin in 6.0.1"
+      },
+      {
+        "claim": "#39951 | P6 | ClickHouse \"could not convert string to numeric\" | 6.0.0 |",
+        "sources": [
+          {
+            "ref": "issue #39951",
+            "title": "Superset 6.0.0 bug: Could not convert string '849' to numeric",
+            "excerpt": "### Bug description I encountered an error in my Superset 6.0.0. We recently updated, and several charts are failing with the following error: DB engine error: Could not convert string '849' to numeric. This may be triggered by: Issue #1011 - Superset encountered an unexpected error. The query for t"
+          }
+        ],
+        "label": "partial",
+        "why": "Numeric error and 6.0.0 confirmed; ClickHouse attribution not in excerpt"
+      },
+      {
+        "claim": "#34784 | P6 | Calculated columns emit wrong SQL (ClickHouse) | 6.0.0rc1 |",
+        "sources": [
+          {
+            "ref": "issue #34784",
+            "title": "[Superset 6.0.0rc1] Calculated Column isn't working and generate wrong SQL with ClickHouse",
+            "excerpt": "### Bug description Calculated Column isn't working with ClickHouse. The engine doesnt generate proper SQL 1. Define a calculated column , let's say: `name_test` by this sql: `toString('This is a test name')` 2. Create a table chart and show that `name_test` 3. Update to refesh the table. This is th"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms ClickHouse calculated-column wrong SQL in 6.0.0rc1"
+      },
+      {
+        "claim": "#39967 | P6 | Role-edit permission dropdown fails to load | 6.1.0rc3 |",
+        "sources": [
+          {
+            "ref": "issue #39967",
+            "title": "Permission dropdown in `Role Edit Form` fails to echo names of bound permissions",
+            "excerpt": "### Bug description 1. Have superset 6.1.0rc3 installed 2. Go to `Settings` -> `List Roles` 3. Edit a `Role` such as `Public`, the Role must have some permission bound 4. Open the `Permission` dropdown, there's a toast saying `There was an error loading permissions.` At the same time, you will find "
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms permission dropdown load failure in 6.1.0rc3"
+      },
+      {
+        "claim": "#36776 | P6 | Drill-to-detail by date emits wrong SQL (ClickHouse) | 6.0.0 |",
+        "sources": [
+          {
+            "ref": "issue #36776",
+            "title": "Table Drill to detail by date error",
+            "excerpt": "### Bug description Version\uff1a6.0.0 ChartType: Table 1. Drill to detail by datetime (Time Grain is Day) 2. SQL does not run according to the logic `toStartOfDay(toDateTime(\"signup_done_time\")) = toDateTime ('2025 -12-18 00:00: 00')`. It's a direct string assignment, like this ``` SQL AND \"signup_done_"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms drill-to-detail-by-date wrong SQL (ClickHouse funcs), 6.0.0"
+      },
+      {
+        "claim": "#38629 | P6 | Deleting a user fails (IntegrityError, MariaDB) | 6.0.0 |",
+        "sources": [
+          {
+            "ref": "issue #38629",
+            "title": "6.0.0 - Deleting a user via the GUI fails with IntegrityError on MariaDB",
+            "excerpt": "### Bug description # Bug: Deleting a user via the GUI fails with IntegrityError on MariaDB ## Summary When attempting to delete a user via the Superset Security UI (`Settings \u2192 List Users \u2192 Delete`), the operation fails silently in the UI with \"There was an issue deleting record\" and raises an `Int"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms user-delete IntegrityError on MariaDB in 6.0.0"
+      },
+      {
+        "claim": "#40225 | P7 | MCP user resolution fails (Keycloak/SSO) \u2014 6.1.0 regression |",
+        "sources": [
+          {
+            "ref": "issue #40225",
+            "title": "MCP user resolution not working in release 6.1.0",
+            "excerpt": "> I'm getting the same error message on 6.1.0 with Keycloak. > > 2026-05-18 12:27:22,599:ERROR:superset.mcp_service.middleware:MCP tool error: tool=health_check, user_id=None, duration_ms=62, error_type=ToolError, error=Error calling tool 'health_check': No authenticated user found. Tried: > - g.use"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms MCP user resolution failing with Keycloak in 6.1.0"
+      },
+      {
+        "claim": "#38806 | P6 | MCP tool exec fails with Flask app-context error \u2014 6.1.0rc1 |",
+        "sources": [
+          {
+            "ref": "issue #38806",
+            "title": "MCP service: Flask app context error when running via 'superset mcp run'",
+            "excerpt": "## Bug Description Running `superset mcp run --host 0.0.0.0 --port 5008` starts the MCP server successfully and JWT authentication works, but tool execution immediately fails with a Flask application context error, terminating the session. ## Environment - Superset version: 6.1.0rc1 (Docker image `a"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms MCP Flask app-context error in 6.1.0rc1"
+      },
+      {
+        "claim": "Oracle positional `GROUP BY 1,2,3` (#35414) \u00b7 Snowflake `IS true` filter (#33235) \u00b7 MSSQL multi-space column names (#32879) \u00b7 Jinja in `ORDER BY` not rendered (#29378) \u00b7 Trino/Iceberg partitions preview (#25307) \u00b7 ClickHouse (#39951, #34784, #36776).",
+        "sources": [
+          {
+            "ref": "issue #34784",
+            "title": "[Superset 6.0.0rc1] Calculated Column isn't working and generate wrong SQL with ClickHouse",
+            "excerpt": "### Bug description Calculated Column isn't working with ClickHouse. The engine doesnt generate proper SQL 1. Define a calculated column , let's say: `name_test` by this sql: `toString('This is a test name')` 2. Create a table chart and show that `name_test` 3. Update to refesh the table. This is th"
+          },
+          {
+            "ref": "issue #29378",
+            "title": "Calculated column jinja templating fails in ORDER BY clause ",
+            "excerpt": "### Bug description When attempting to use a calculated column that uses jinja templating as the metric in a bar chart, the jinja placeholders are included in the `ORDER BY` clause of the executed query, rather than being replaced with rendered SQL string. The template renders correctly in the `SELE"
+          },
+          {
+            "ref": "issue #36776",
+            "title": "Table Drill to detail by date error",
+            "excerpt": "### Bug description Version\uff1a6.0.0 ChartType: Table 1. Drill to detail by datetime (Time Grain is Day) 2. SQL does not run according to the logic `toStartOfDay(toDateTime(\"signup_done_time\")) = toDateTime ('2025 -12-18 00:00: 00')`. It's a direct string assignment, like this ``` SQL AND \"signup_done_"
+          },
+          {
+            "ref": "issue #32879",
+            "title": "Field names with multiple spaces cause unexpected error, need nontrivial manual fix",
+            "excerpt": "**TL;DR:** Please **update field name handling so that an SQL field with multiple spaces in its name is handled correctly**. If that is not trivial, please update the error message to help the user find the issue and fix it using the CUSTOM SQL feature. --- ### Bug description #### Steps to reproduc"
+          },
+          {
+            "ref": "issue #39951",
+            "title": "Superset 6.0.0 bug: Could not convert string '849' to numeric",
+            "excerpt": "### Bug description I encountered an error in my Superset 6.0.0. We recently updated, and several charts are failing with the following error: DB engine error: Could not convert string '849' to numeric. This may be triggered by: Issue #1011 - Superset encountered an unexpected error. The query for t"
+          },
+          {
+            "ref": "issue #33235",
+            "title": "Filtering on Boolean columns has a limitation in Snowflake (and possibly other databases)",
+            "excerpt": "### Bug description In chart creator, I can't apply a filter on a Boolean column (e.g. to just return rows where the column is `True`) when using Snowflake. The generated Snowflake SQL isn't valid, because `IS True` isn't valid in Snowflake. This is the generated SQL: ``` SELECT COUNT(*) AS \"count\" "
+          },
+          {
+            "ref": "issue #35414",
+            "title": "[6.0.0-RC2] Oracle Database Bar Char Error: ORA-00979: not a GROUP BY expression",
+            "excerpt": "### Bug description Steps to Reproduce 1. Create database connection to Oracle 19.24 using cx_Oracle. 2. Create a bar chart visualization. 3. Get Chart Error \"Data error\" 4. Open View query.When \"Formatted\" = False \u2192 SQL query is valid. When \"Formatted\" = True \u2192 SQL query becomes invalid, Superset g"
+          },
+          {
+            "ref": "issue #25307",
+            "title": "Data preview for trino tables does not work for all trino connection types",
+            "excerpt": "A clear and concise description of what the bug is. Data preview for trino tables does not work for all trino connectors (specifically for iceberg in our case). This issue results because the response from \"select * from table$partitions\" is dependent on the connection type (this is used in superset"
+          }
+        ],
+        "label": "supported",
+        "why": "Cited issues all map to per-dialect SQL-generation bugs"
+      },
+      {
+        "claim": "Value/label correctness: stacked-bar \"Only Total\" (#33882), forecast uncertainty clipped at 0 (#21734), tooltip ignores metric format (#33757), pivot subtotal of percentages (#32260).",
+        "sources": [
+          {
+            "ref": "issue #33882",
+            "title": "Show value on stacked bar chart is incorrect",
+            "excerpt": "### Bug description The stacking functionality for bar charts was introduced recently, but it broke the option to show bar values. When selecting Only Total, then Instead of displaying the number for each bar, it now shows a single value for the entire cluster. In the example below, it should show t"
+          },
+          {
+            "ref": "issue #32260",
+            "title": "Issue with Incorrect Subtotal and Sum Calculation of Completion Percentage in Pivot Table",
+            "excerpt": "### Bug description we created a pivot table chart to show the completion percentage of sales area, and enabled the subtotal and sum function, the target and actual amount is correct, but the subtotal and sum of completion is wrong, what I'd like to get is \" sum(actual_amount) / sum(target_amount)\","
+          },
+          {
+            "ref": "issue #33757",
+            "title": "Tooltip ignores metric format in line charts (always shows dollar format) \u2013 Regression in 4.X",
+            "excerpt": "### Bug description In most recent Superset, tooltips in line charts display metric values using a dollar format ($,.2f), even when: - The metric is clearly set to a percentage format (e.g., .2%) in the axis config - The \"Show Values\" option correctly displays the value as a percentage - The Series "
+          },
+          {
+            "ref": "issue #21734",
+            "title": "Uncertainty intervals of forecast are wrong when it goes negative.",
+            "excerpt": "Uncertainty intervals of forecast never goes negative. #### How to reproduce the bug 1 Take any data that includes negative values. 2 Run a forecast, including uncertainty interval ### Expected results I'd expect the uncertainty to be around the forecast. ### Actual results The uncertainty interval "
+          }
+        ],
+        "label": "supported",
+        "why": "All four issues confirm the stated value/label correctness bugs"
+      },
+      {
+        "claim": "Layout/cosmetic: inconsistent chart padding (#31033), dropdown double scrollbars (#35833), treemap tooltip CSS (#33896), bar spilling past axis (#26254), heatmap x-axis clipped (#33737), last month missing on x-axis (#33905), deck.gl legend color mismatch (#20459).",
+        "sources": [
+          {
+            "ref": "issue #33896",
+            "title": "Treemap tooltip  css",
+            "excerpt": "I create treemap chart. I found text appears cramped in the hover tooltip. How can I make it more beautiful? ![Image](https://github.com/user-attachments/assets/ff9b46e7-7247-40e1-b85b-0a60ac64fb50)"
+          },
+          {
+            "ref": "issue #33737",
+            "title": "\"Show chart description\" causes bottom of x-axis to be cut off heatmap in 5.0.0rc3",
+            "excerpt": "### Bug description The chart has plenty of room on the dashboard and I can see the x-axis fully when the description is hidden. But when I show it, the x-axis gets blocked: ![Image](https://github.com/user-attachments/assets/14316aac-31bc-47f9-8ca5-8d9b54d33f48) Here's the same chart looking good o"
+          },
+          {
+            "ref": "issue #20459",
+            "title": "[DECK.GL MULTIPLE LAYERS] Categorical color from scatterplot not used",
+            "excerpt": "In a deck.gl multiple layers I use a deck.gl scatterplot with a categorical color for the point color. It's working fine except that the categories color in legend is not the same as the point on the map. #### How to reproduce the bug 1. Create a deck.gl scatterplot chart 2. Put something in \"Point "
+          },
+          {
+            "ref": "issue #26254",
+            "title": "Bar chart spilling out past x-axis on both ends",
+            "excerpt": "Superset 3.1.0rc2: ![image](https://github.com/apache/superset/assets/7569808/d76404b5-73a7-4478-b5c9-7145f98b6291) How it looks previously in 3.0.0: ![image](https://github.com/apache/superset/assets/7569808/6430e2ab-7cba-41a0-a498-1d23251bea4f) Here's the chart config in 3.1.0rc2: ![image](https:/"
+          },
+          {
+            "ref": "issue #33905",
+            "title": "Last month doesn't appear on X axis for Time Series Line Chart",
+            "excerpt": "### Bug description 1. Go to a time series line chart with monthly data from the example datasets 2. Chose month time grain ## Expected Last month's label should show on X axis ## Actual Last month's label doesn\u2019t show ### Screenshots/recordings ![Image](https://github.com/user-attachments/assets/20"
+          },
+          {
+            "ref": "issue #31033",
+            "title": "Inconsistent Default Padding for Different Charts",
+            "excerpt": "### Bug description Depending on the type selected, the Superset UI will display charts with different alignments. Ideally they would be centered inside the card. Currently the padding differs on both sides leading to more whitespace on the left or right. For Example: 1. Go to Dashboard 2. Click `+ "
+          },
+          {
+            "ref": "issue #35833",
+            "title": "Dropdown menu shows 2 scroll bars.",
+            "excerpt": "## Screenshot <img width=\"1508\" height=\"880\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/576e9149-a8a0-453d-a410-13488acc2385\" /> ## Description The dropdown menu shows 2 scroll bars. Using Superset 6.0.0rc2 ## Design input `design:suggest` Should show only 1 scroll bar."
+          }
+        ],
+        "label": "supported",
+        "why": "All seven issues confirm the listed layout/cosmetic defects"
+      },
+      {
+        "claim": "Filters: \"Clear All\" nukes required time filter \u2192 downstream errors (#33361), dependent-filter stale value (#24511), dropdown obscures input on small screens (#34135), numeric-precision filtering (#33206).",
+        "sources": [
+          {
+            "ref": "issue #33361",
+            "title": "\"Clear All Filters\" sets required time filter to 'No filter', causing downstream filters to error",
+            "excerpt": "### Bug description When using native filters with cascading dependencies in Apache Superset, clearing all filters using the \"Clear All Filters\" button causes the required time range filter (e.g., `\"Last week\"`) to be set to `No filter`. Because this time filter is marked as non-optional (`enableEmp"
+          },
+          {
+            "ref": "issue #33206",
+            "title": "Incorrect filtering for numeric values with different decimal precision",
+            "excerpt": "### Bug description ### Summary There is an issue with filtering numeric values in Superset when values have different numbers of digits after the decimal point. ### Steps to Reproduce 1. Add a filter for a numeric field that contains both integer and decimal values (e.g., 21, 21.8, 25.35, etc.). !["
+          },
+          {
+            "ref": "issue #34135",
+            "title": "Dashboard Filter dropdown input obscured on smaller screens views",
+            "excerpt": "# Bug Description When using a dashboard filter of type Value, the dropdown menu overlaps and hides the input field on smaller screen resolutions or when browser zoom is increased. ## Reproduction 1. Go to the example Sales Dashboard 2. Reduce screen height (with devtools) 3. Click on a select filte"
+          },
+          {
+            "ref": "issue #24511",
+            "title": "Dependent Filter Issue :- If the parent Filter value is changed then the dependent filter with  previous selected value is not getting removed if its not in the dependent filter data(options) ",
+            "excerpt": "How to reproduce the bug 1. Create a Filter Name **A** 2. Create a Filter Name **B** 3. Tick the checkbox the **Values are dependent on other filters** in Filter **B** and select **A** in **VALUES DEPENDENT ON** 4. Click on **Save** 5. Select some value in filter **A** 6. Data API call will be done "
+          }
+        ],
+        "label": "supported",
+        "why": "All four filter issues match described behaviors"
+      },
+      {
+        "claim": "Export: 6-second UI freeze on \"Download as image\" (#38926, performance), export-as-image failures (#28713).",
+        "sources": [
+          {
+            "ref": "issue #28713",
+            "title": "Problem Exporting Charts as Image",
+            "excerpt": "### Bug description Hi Superset Community, I have a problem exporting Charts as Image, from multiple Dashboards and instance of Superset. ### How to reproduce the bug 1. Go to a Dashboards with Charts 2. Click the three dots on the top right of a charts 3. Download => Download as Image ### Screensho"
+          },
+          {
+            "ref": "issue #38926",
+            "title": "[Bug] UI freezes / browser hangs for 6 seconds every time \"Download as image\" is clicked on a chart. freeze does not improve on repeated downloads",
+            "excerpt": "### Bug description Every time I click Download as image on a chart, the entire Superset UI locks up for roughly 6 seconds (longer on complex charts like large tables or Deck.gl maps). The page becomes completely unresponsive during this time, I cannot interact with anything. Once the freeze passes,"
+          }
+        ],
+        "label": "supported",
+        "why": "Both issues confirm image-download freeze and export failures"
+      },
+      {
+        "claim": "1 | #27607 | Download records from Drill-to-detail | 34 reactions / 24 comments \u2014 highest feature demand |",
+        "sources": [
+          {
+            "ref": "discussion #27607",
+            "title": "Unable to download detailed records in \"Drill to detail\" and \"Drill to Detail by\"",
+            "excerpt": "I am not be able to downloaded the detailed records in both \"Drill to detail\" and \"Drill to Detail by\" options. I can see the detailed records but see no option to download them. Screenshot shows a bar graph created. Then I right click on a dimension and select \"Drill to detail by \" . I see the deta"
+          }
+        ],
+        "label": "supported",
+        "why": "Source confirms inability to download drill-to-detail records"
+      },
+      {
+        "claim": "2 | #35003 | **SIP-182 Semantic Layer** support | 23r, strategic |",
+        "sources": [
+          {
+            "ref": "issue #35003",
+            "title": "[SIP-182] Semantic Layer Support in Apache Superset",
+            "excerpt": "# SIP: Semantic Layer Support in Apache Superset ## Abstract This proposal introduces changes to Apache Superset to better support semantic layers and external data modeling systems. The changes include (1) the definition of an \u201cExplorable\u201d interface (a Python protocol), and (2) the introduction of "
+          }
+        ],
+        "label": "supported",
+        "why": "Source is SIP-182 Semantic Layer Support"
+      },
+      {
+        "claim": "3 | #18451 | Let users disable the \"force refreshing\" toast | 16r, long-standing annoyance |",
+        "sources": [
+          {
+            "ref": "discussion #18451",
+            "title": "Make possible to disable the annoying \"This dashboard is currently force refreshing\" message",
+            "excerpt": "Is your feature request related to a problem? Please describe. With Superset 1.0, it seems a new toast has been added for when you have auto-refresh in a dashboard: \"This dashboard is currently force refreshing; the next force refresh will be in 10 seconds.\" This is super-annoying because it distrac"
+          }
+        ],
+        "label": "supported",
+        "why": "Source requests disabling force-refresh toast"
+      },
+      {
+        "claim": "4 | #31982 | `target=\"_blank\"` in Markdown links | 13r, trivial fix |",
+        "sources": [
+          {
+            "ref": "discussion #31982",
+            "title": "Allow target Attribute in Markdown Links for Opening Links in a New Tab",
+            "excerpt": "Issue When creating a dashboard and using Markdown to create a hyperlink (<a>), the target attribute is stripped, even if explicitly included in the raw Markdown input. This prevents the ability to use target=\"_blank\" to open links in a new tab, which is a common use case in dashboards. Upon reviewi"
+          }
+        ],
+        "label": "supported",
+        "why": "Source requests target attribute in Markdown links"
+      },
+      {
+        "claim": "5 | #30575 | Sort categorical x-axis by another variable | 9r, common BI need |",
+        "sources": [
+          {
+            "ref": "discussion #30575",
+            "title": "Allow ordering/sorting of categorical x-axis values by another variable",
+            "excerpt": "PROBLEM Users need to be able to sort categorical x-axis variables by something other than alphabetical or total/max/min/avg. For instance Sun-Mon-Tue-Wed-Thu-Fri-Sat order, or Jan-Feb-Mar-Apr, or Bad-Fair-Good-Great, etc. But Bar Chart v2 does not support this. Take this chart (from master branch a"
+          }
+        ],
+        "label": "supported",
+        "why": "Source requests sorting categorical x-axis by another variable"
+      },
+      {
+        "claim": "\u2014 | #39965 | SIP-212 Browser-print PDF reports (vs screenshot) | recent, active |",
+        "sources": [
+          {
+            "ref": "issue #39965",
+            "title": "[SIP-212] Browser Print PDF Dashboard Reports",
+            "excerpt": "## [SIP-212] Proposal for Browser Print PDF Dashboard Reports ## Motivation Superset dashboard PDF reports are generated from browser screenshots. This is a reasonable default for visual dashboard snapshots, but it is not ideal for document-style reports. The screenshot-based approach has several li"
+          }
+        ],
+        "label": "supported",
+        "why": "Source is SIP-212 browser-print PDF reports vs screenshot"
+      },
+      {
+        "claim": "\u2014 | #39209 | SIP-207 Redux \u2192 Zustand/TanStack Query (frontend health) | internal but high-leverage |",
+        "sources": [
+          {
+            "ref": "issue #39209",
+            "title": "[SIP-207] Replace Redux with Zustand and TanStack Query",
+            "excerpt": "## [SIP-207] Replace Redux with Zustand and TanStack Query This proposal introduces a clear separation between two fundamentally different kinds of state that are currently handled by the same tool: **UI state** (edit mode, active tabs, modal visibility; things that live only in the browser) and **s"
+          }
+        ],
+        "label": "supported",
+        "why": "Source is SIP-207 Redux to Zustand/TanStack Query"
+      },
+      {
+        "claim": "#33044 SIP-163 Archive dashboards \u00b7 #36145 SIP-192 Labeled version history + restore \u00b7 #39492 SIP-210 Entity version history \u00b7 #39464 SIP-208 Soft delete \u00b7 #37427 SIP-203 Git-backed dataset version control.",
+        "sources": [
+          {
+            "ref": "issue #39492",
+            "title": "[SIP-210] Entity Version History for Dashboards, Charts, and Datasets",
+            "excerpt": "## [SIP] Entity Version History for Dashboards, Charts, and Datasets | | | |---------|--------| | **Status** | Open for Voting | | **Authors** | Mike Bridge ([@mikebridge](https://github.com/mikebridge)) | | **Created** | 2026-05-08 | | **Discussion** | _To be added once posted to dev@superset.apach"
+          },
+          {
+            "ref": "issue #39464",
+            "title": "[SIP-208] Soft Delete for Charts, Dashboards, and Datasets",
+            "excerpt": "## [SIP] Soft Delete for Charts, Dashboards, and Datasets > **Terminology note**: The delete action is labelled **Archive** in the UI and the restore action is labelled **Unarchive**. The backend implementation uses standard soft-delete naming (`deleted_at`, `soft_delete()`, `/restore`) because thes"
+          },
+          {
+            "ref": "issue #36145",
+            "title": "[SIP-192] Labeled Version History + Restore",
+            "excerpt": "## [SIP] Proposal for Labeled Version History + Restore ### Motivation Some users want to be able to roll back and have a process to save states of their virtual datasets or other assets. It was mentioned here also https://github.com/apache/superset/issues/30436 that some people were talking about o"
+          },
+          {
+            "ref": "issue #37427",
+            "title": "[SIP-203] Git-backed Version Control for Datasets in Apache Superset",
+            "excerpt": "# SIP: Git-backed Version Control for Datasets in Apache Superset ## 1. Motivation Apache Superset is widely used as a self-service BI and data exploration tool. While charts and dashboards are visually inspectable and often reviewed collaboratively, **datasets\u2014especially SQL-based virtual datasets\u2014"
+          },
+          {
+            "ref": "issue #33044",
+            "title": "[SIP-163] Archiving Dashboards",
+            "excerpt": "*Please make sure you are familiar with the SIP process documented* [here](https://github.com/apache/superset/issues/5602). The SIP will be numbered by a committer upon acceptance. ## [SIP] Proposal for Archiving Dashboards ### Motivation Dashboards have 2 states published and draft. However, there "
+          }
+        ],
+        "label": "supported",
+        "why": "All five SIP numbers and titles match exactly"
+      },
+      {
+        "claim": "Deployment & Helm** | Official chart can't ship 6.x; lean image missing `psycopg2`; publishing pipeline broken | #38456, #36763, #31026, #31431, #35461, #35174, #25825, #34998, #38310 |",
+        "sources": [
+          {
+            "ref": "issue #25825",
+            "title": "Kubernetes deployments only load example SQLite data into a single pod, causes \"no such table: main.FCC 2018 Survey\"",
+            "excerpt": "I have deployed Apache Superset 3.0 using Helm charts. The Helm chart version is superset-0.10.11, and the app version is 3.0.1. I've configured Superset to load example data (loadExamples set to true), but I'm encountering an issue on the dashboard with the error message '**no such table: main.FCC "
+          },
+          {
+            "ref": "issue #35461",
+            "title": "Helm chart 0.15.1 released but not published",
+            "excerpt": "### Bug description 0.15.1 superset chart was released last week, but has not yet been published into https://apache.github.io/superset repository. Above from that, current 0.15.1 chart is broken, due to infamous Bitnami repositories being deprecated. Not trying to get on politics or suggest what to"
+          },
+          {
+            "ref": "issue #35174",
+            "title": "superset helm 0.15.0 chart broken",
+            "excerpt": "### Bug description When using bring your own DB, the superset-init-db k8s main job breaks under this error: ```pgrading DB schema... Loaded your LOCAL configuration at [/app/pythonpath/superset_config.py] 2025-09-17 12:41:33,296:ERROR:superset.app:Failed to create app Traceback (most recent call la"
+          },
+          {
+            "ref": "discussion #31431",
+            "title": "ModuleNotFoundError: No module named 'psycopg2' during k8 installation",
+            "excerpt": "Hi, While deploying super set using helm chart, i am getting \"ModuleNotFoundError: No module named 'psycopg2'\" in superset-init-db"
+          },
+          {
+            "ref": "issue #38310",
+            "title": "building apache-superset-core fails due to incompatibility of sqlglot",
+            "excerpt": "### Bug description I am trying to implement an upgrade after getting this bug: https://github.com/apache/superset/issues/37977 The docker containers are running on a linux debian 12. I am following these steps: https://superset.apache.org/admin-docs/installation/upgrading-superset#docker-compose Wh"
+          },
+          {
+            "ref": "issue #31026",
+            "title": "Helm upgrade from 4.0.2 -> 4.1.1 fails as psycopg2 is no longer bundled into lean Superset image",
+            "excerpt": "### Bug description Hi I want to upgrade Superset 4.0.2 to 4.1.1 version using Helm. helm upgrade --install superset superset/superset -f values.yaml I got issue with psycopg2. Help, please. ### Screenshots/recordings Defaulted container \"superset-init-db\" out of: superset-init-db, wait-for-postgres"
+          },
+          {
+            "ref": "issue #34998",
+            "title": "superset 6.0.0rc1-dev use External database \uff0cerror",
+            "excerpt": "### Bug description pod err log .and 10.168.8.60 is ok .tag is 6.0.0rc1-dev 2025/09/03 07:56:26 Waiting for: tcp://10.168.8.60:6432 2025/09/03 07:56:26 Problem with dial: dial tcp 10.168.8.60:6432: connect: no route to host. Sleeping 1s 2025/09/03 07:56:27 Problem with dial: dial tcp 10.168.8.60:643"
+          },
+          {
+            "ref": "issue #38456",
+            "title": "Superset 6.0.0 Helm Chart Not Available",
+            "excerpt": "### Bug description Superset 6.0.0 Helm Chart Not Available. Note that https://github.com/apache/superset/issues/35461 may prevent a chart being published even if one is created as evidenced by 0.15.3 and 0.15.4 missing from https://artifacthub.io/packages/helm/superset/superset. ### Screenshots/rec"
+          },
+          {
+            "ref": "discussion #36763",
+            "title": "[Helm] Request to update Helm Chart to support Superset 6.0.0",
+            "excerpt": "Apache Superset version 6.0.0 was recently released (Dec 18, 2025). Currently, the official Helm chart in the apache/superset repository still points to appVersion: 5.0.0. Version 6.0.0 contains several major breaking changes (Ant Design 5 upgrade, Flask-AppBuilder 5.0, removal of AUTH_OID, and inte"
+          }
+        ],
+        "label": "partial",
+        "why": "#25825/#34998/#38310 are deployment but not chart/psycopg2/publishing problems described"
+      },
+      {
+        "claim": "6.x release stabilization** | Regressions across auth, viz, DB engines tied to 6.0.0/6.0.1/6.1.0 | #39682, #37892, #36117, #39834, #39951, #34784, #39967, #36776, #38629, #35833, #36878 |",
+        "sources": [
+          {
+            "ref": "issue #34784",
+            "title": "[Superset 6.0.0rc1] Calculated Column isn't working and generate wrong SQL with ClickHouse",
+            "excerpt": "### Bug description Calculated Column isn't working with ClickHouse. The engine doesnt generate proper SQL 1. Define a calculated column , let's say: `name_test` by this sql: `toString('This is a test name')` 2. Create a table chart and show that `name_test` 3. Update to refesh the table. This is th"
+          },
+          {
+            "ref": "issue #39682",
+            "title": "after upgrading to 6.0.0 the embedding dashboarding is broken",
+            "excerpt": "### Bug description 4.1.4 embedding was working fine with guest token but after upgrading to 6.0.0 it is broken In 4.1.4 the emedding dashboarding was working fine with superset. But recently we have upgraded our superset to 6.0.0 version it is giving below error. { \"errors\": [ { \"message\": \"403 For"
+          },
+          {
+            "ref": "issue #37892",
+            "title": "Time-series Table: sorting always based on first column in v6.0.0",
+            "excerpt": "### Bug description ### Summary In Superset **6.0.0**, the **Time-series Table** visualization always sorts rows based on the **first column**, regardless of which column header is clicked. This prevents proper sorting on time series columns. ### Steps to Reproduce 1. Create or open a **Time-series "
+          },
+          {
+            "ref": "issue #38629",
+            "title": "6.0.0 - Deleting a user via the GUI fails with IntegrityError on MariaDB",
+            "excerpt": "### Bug description # Bug: Deleting a user via the GUI fails with IntegrityError on MariaDB ## Summary When attempting to delete a user via the Superset Security UI (`Settings \u2192 List Users \u2192 Delete`), the operation fails silently in the UI with \"There was an issue deleting record\" and raises an `Int"
+          },
+          {
+            "ref": "issue #36776",
+            "title": "Table Drill to detail by date error",
+            "excerpt": "### Bug description Version\uff1a6.0.0 ChartType: Table 1. Drill to detail by datetime (Time Grain is Day) 2. SQL does not run according to the logic `toStartOfDay(toDateTime(\"signup_done_time\")) = toDateTime ('2025 -12-18 00:00: 00')`. It's a direct string assignment, like this ``` SQL AND \"signup_done_"
+          },
+          {
+            "ref": "issue #36878",
+            "title": "Apache Superset 6.0.0 Global echartsOptionsOverrides and specific echartsOptionsOverridesByChartType",
+            "excerpt": "## \ud83d\udc1e Issue: Custom Theme Tokens Not Applying to Charts in Superset 6.0.0 ### Environment * **Apache Superset:** 6.0.0 * **Theme Type:** Custom UI Theme (via UI Theme Administration) * **Rendering Engine:** Ant Design (UI) + ECharts (Charts) --- ## \ud83d\udcf8 Screenshots ### UI Theme Applied (No Visible Chang"
+          },
+          {
+            "ref": "issue #39951",
+            "title": "Superset 6.0.0 bug: Could not convert string '849' to numeric",
+            "excerpt": "### Bug description I encountered an error in my Superset 6.0.0. We recently updated, and several charts are failing with the following error: DB engine error: Could not convert string '849' to numeric. This may be triggered by: Issue #1011 - Superset encountered an unexpected error. The query for t"
+          },
+          {
+            "ref": "issue #36117",
+            "title": "Remote user auth (AUTH_REMOTE_USER) worked well in 5.0.0, experienced issues with 6.0.0rc2",
+            "excerpt": "### Bug description I did not have much success trying to setup REMOTE_AUTH in Superset 6.0.0 (rc2), in the end I reverted to 5.0.0 and it worked immediately (with config as in `superset_config.py` below). Could this be a regression bug (or breaking change)? ```from flask_appbuilder.security.manager"
+          },
+          {
+            "ref": "issue #35833",
+            "title": "Dropdown menu shows 2 scroll bars.",
+            "excerpt": "## Screenshot <img width=\"1508\" height=\"880\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/576e9149-a8a0-453d-a410-13488acc2385\" /> ## Description The dropdown menu shows 2 scroll bars. Using Superset 6.0.0rc2 ## Design input `design:suggest` Should show only 1 scroll bar."
+          },
+          {
+            "ref": "issue #39834",
+            "title": "DatabaseRestApi.get_list and DatasetRestApi.get_list return count:0 for JWT-authenticated Admin users in 6.0.1",
+            "excerpt": "### Bug description # DatabaseRestApi.get_list and DatasetRestApi.get_list return count:0 for JWT-authenticated Admin users in 6.0.1 **Labels:** `bug`, `needs-triage` --- ## Bug description When authenticating via the REST API using a JWT Bearer token (`POST /api/v1/security/login`), the `/api/v1/da"
+          },
+          {
+            "ref": "issue #39967",
+            "title": "Permission dropdown in `Role Edit Form` fails to echo names of bound permissions",
+            "excerpt": "### Bug description 1. Have superset 6.1.0rc3 installed 2. Go to `Settings` -> `List Roles` 3. Edit a `Role` such as `Public`, the Role must have some permission bound 4. Open the `Permission` dropdown, there's a toast saying `There was an error loading permissions.` At the same time, you will find "
+          }
+        ],
+        "label": "supported",
+        "why": "All cited regressions tied to 6.0.0/6.0.1/6.1.0 versions"
+      },
+      {
+        "claim": "Auth / RBAC / Embedding** | Guest tokens, JWT, RBAC, remote-user all show breakage; production blockers | #39682, #31872, #36117, #39834, #39967, #32836, #34543 |",
+        "sources": [
+          {
+            "ref": "issue #31872",
+            "title": "4.0.2 - Imported charts shows error on embedding (Guest user cannot modify chart payload)",
+            "excerpt": "### Bug description Bug description \u300cGuest user cannot modify chart payload\u300d Error is displayed for imported charts. ### Screenshots/recordings How to reproduce the bug I embedded Apache Superset in the web application (Spring Boot and Angular) with authentication. After connection, the superset is "
+          },
+          {
+            "ref": "issue #39682",
+            "title": "after upgrading to 6.0.0 the embedding dashboarding is broken",
+            "excerpt": "### Bug description 4.1.4 embedding was working fine with guest token but after upgrading to 6.0.0 it is broken In 4.1.4 the emedding dashboarding was working fine with superset. But recently we have upgraded our superset to 6.0.0 version it is giving below error. { \"errors\": [ { \"message\": \"403 For"
+          },
+          {
+            "ref": "issue #32836",
+            "title": "Login Screen Unintentionally Displayed in Version 4.1.2(Occurs also in 5.0.0 rc2)",
+            "excerpt": "### Bug description With the dashboard published to Public If you perform the following operation without logging in, the login screen appears without displaying the dashboard list. 1.View one of the public dashboards 2.Select Dashboards from the menu ### Screenshots/recordings _No response_ ### Sup"
+          },
+          {
+            "ref": "issue #34543",
+            "title": "Superset Embedded Dashboard Cache Retrieval Fails with Multi-Parameter Jinja Filters",
+            "excerpt": "### Bug description Apache Superset Version: 4.1.2 Deployment: Dockerized, with two VMs (one for Superset web UI, one for Celery workers) Domain: Both services under the same domain **Issue** When embedding a dashboard via iframe, queries using a single Jinja filter work correctly. However, when usi"
+          },
+          {
+            "ref": "issue #36117",
+            "title": "Remote user auth (AUTH_REMOTE_USER) worked well in 5.0.0, experienced issues with 6.0.0rc2",
+            "excerpt": "### Bug description I did not have much success trying to setup REMOTE_AUTH in Superset 6.0.0 (rc2), in the end I reverted to 5.0.0 and it worked immediately (with config as in `superset_config.py` below). Could this be a regression bug (or breaking change)? ```from flask_appbuilder.security.manager"
+          },
+          {
+            "ref": "issue #39834",
+            "title": "DatabaseRestApi.get_list and DatasetRestApi.get_list return count:0 for JWT-authenticated Admin users in 6.0.1",
+            "excerpt": "### Bug description # DatabaseRestApi.get_list and DatasetRestApi.get_list return count:0 for JWT-authenticated Admin users in 6.0.1 **Labels:** `bug`, `needs-triage` --- ## Bug description When authenticating via the REST API using a JWT Bearer token (`POST /api/v1/security/login`), the `/api/v1/da"
+          },
+          {
+            "ref": "issue #39967",
+            "title": "Permission dropdown in `Role Edit Form` fails to echo names of bound permissions",
+            "excerpt": "### Bug description 1. Have superset 6.1.0rc3 installed 2. Go to `Settings` -> `List Roles` 3. Edit a `Role` such as `Public`, the Role must have some permission bound 4. Open the `Permission` dropdown, there's a toast saying `There was an error loading permissions.` At the same time, you will find "
+          }
+        ],
+        "label": "supported",
+        "why": "Cited issues span guest-token, JWT, RBAC, remote-user, embedding breakage"
+      },
+      {
+        "claim": "DB-engine SQL correctness** | Generated SQL invalid per dialect (ClickHouse, Oracle, Snowflake, MSSQL, Trino) + Jinja | #35414, #33235, #32879, #29378, #25307, #39951, #34784, #36776 |",
+        "sources": [
+          {
+            "ref": "issue #34784",
+            "title": "[Superset 6.0.0rc1] Calculated Column isn't working and generate wrong SQL with ClickHouse",
+            "excerpt": "### Bug description Calculated Column isn't working with ClickHouse. The engine doesnt generate proper SQL 1. Define a calculated column , let's say: `name_test` by this sql: `toString('This is a test name')` 2. Create a table chart and show that `name_test` 3. Update to refesh the table. This is th"
+          },
+          {
+            "ref": "issue #29378",
+            "title": "Calculated column jinja templating fails in ORDER BY clause ",
+            "excerpt": "### Bug description When attempting to use a calculated column that uses jinja templating as the metric in a bar chart, the jinja placeholders are included in the `ORDER BY` clause of the executed query, rather than being replaced with rendered SQL string. The template renders correctly in the `SELE"
+          },
+          {
+            "ref": "issue #36776",
+            "title": "Table Drill to detail by date error",
+            "excerpt": "### Bug description Version\uff1a6.0.0 ChartType: Table 1. Drill to detail by datetime (Time Grain is Day) 2. SQL does not run according to the logic `toStartOfDay(toDateTime(\"signup_done_time\")) = toDateTime ('2025 -12-18 00:00: 00')`. It's a direct string assignment, like this ``` SQL AND \"signup_done_"
+          },
+          {
+            "ref": "issue #32879",
+            "title": "Field names with multiple spaces cause unexpected error, need nontrivial manual fix",
+            "excerpt": "**TL;DR:** Please **update field name handling so that an SQL field with multiple spaces in its name is handled correctly**. If that is not trivial, please update the error message to help the user find the issue and fix it using the CUSTOM SQL feature. --- ### Bug description #### Steps to reproduc"
+          },
+          {
+            "ref": "issue #39951",
+            "title": "Superset 6.0.0 bug: Could not convert string '849' to numeric",
+            "excerpt": "### Bug description I encountered an error in my Superset 6.0.0. We recently updated, and several charts are failing with the following error: DB engine error: Could not convert string '849' to numeric. This may be triggered by: Issue #1011 - Superset encountered an unexpected error. The query for t"
+          },
+          {
+            "ref": "issue #33235",
+            "title": "Filtering on Boolean columns has a limitation in Snowflake (and possibly other databases)",
+            "excerpt": "### Bug description In chart creator, I can't apply a filter on a Boolean column (e.g. to just return rows where the column is `True`) when using Snowflake. The generated Snowflake SQL isn't valid, because `IS True` isn't valid in Snowflake. This is the generated SQL: ``` SELECT COUNT(*) AS \"count\" "
+          },
+          {
+            "ref": "issue #35414",
+            "title": "[6.0.0-RC2] Oracle Database Bar Char Error: ORA-00979: not a GROUP BY expression",
+            "excerpt": "### Bug description Steps to Reproduce 1. Create database connection to Oracle 19.24 using cx_Oracle. 2. Create a bar chart visualization. 3. Get Chart Error \"Data error\" 4. Open View query.When \"Formatted\" = False \u2192 SQL query is valid. When \"Formatted\" = True \u2192 SQL query becomes invalid, Superset g"
+          },
+          {
+            "ref": "issue #25307",
+            "title": "Data preview for trino tables does not work for all trino connection types",
+            "excerpt": "A clear and concise description of what the bug is. Data preview for trino tables does not work for all trino connectors (specifically for iceberg in our case). This issue results because the response from \"select * from table$partitions\" is dependent on the connection type (this is used in superset"
+          }
+        ],
+        "label": "supported",
+        "why": "All cited issues are per-dialect SQL-correctness/Jinja bugs"
+      },
+      {
+        "claim": "Versioning, history & recovery** | Coherent SIP push to archive/undo/roll back assets | #33044, #36145, #39492, #39464, #37427 |",
+        "sources": [
+          {
+            "ref": "issue #39492",
+            "title": "[SIP-210] Entity Version History for Dashboards, Charts, and Datasets",
+            "excerpt": "## [SIP] Entity Version History for Dashboards, Charts, and Datasets | | | |---------|--------| | **Status** | Open for Voting | | **Authors** | Mike Bridge ([@mikebridge](https://github.com/mikebridge)) | | **Created** | 2026-05-08 | | **Discussion** | _To be added once posted to dev@superset.apach"
+          },
+          {
+            "ref": "issue #39464",
+            "title": "[SIP-208] Soft Delete for Charts, Dashboards, and Datasets",
+            "excerpt": "## [SIP] Soft Delete for Charts, Dashboards, and Datasets > **Terminology note**: The delete action is labelled **Archive** in the UI and the restore action is labelled **Unarchive**. The backend implementation uses standard soft-delete naming (`deleted_at`, `soft_delete()`, `/restore`) because thes"
+          },
+          {
+            "ref": "issue #36145",
+            "title": "[SIP-192] Labeled Version History + Restore",
+            "excerpt": "## [SIP] Proposal for Labeled Version History + Restore ### Motivation Some users want to be able to roll back and have a process to save states of their virtual datasets or other assets. It was mentioned here also https://github.com/apache/superset/issues/30436 that some people were talking about o"
+          },
+          {
+            "ref": "issue #37427",
+            "title": "[SIP-203] Git-backed Version Control for Datasets in Apache Superset",
+            "excerpt": "# SIP: Git-backed Version Control for Datasets in Apache Superset ## 1. Motivation Apache Superset is widely used as a self-service BI and data exploration tool. While charts and dashboards are visually inspectable and often reviewed collaboratively, **datasets\u2014especially SQL-based virtual datasets\u2014"
+          },
+          {
+            "ref": "issue #33044",
+            "title": "[SIP-163] Archiving Dashboards",
+            "excerpt": "*Please make sure you are familiar with the SIP process documented* [here](https://github.com/apache/superset/issues/5602). The SIP will be numbered by a committer upon acceptance. ## [SIP] Proposal for Archiving Dashboards ### Motivation Dashboards have 2 states published and draft. However, there "
+          }
+        ],
+        "label": "supported",
+        "why": "All five SIPs cluster on archive/undo/rollback/versioning"
+      },
+      {
+        "claim": "Charting quality (correctness + cosmetic)** | Long tail of viz papercuts eroding polish; many bounty/good-first-issue | #33882, #21734, #33757, #32260, #31033, #35833, #33896, #26254, #33737, #33905, #20459 |",
+        "sources": [
+          {
+            "ref": "issue #32260",
+            "title": "Issue with Incorrect Subtotal and Sum Calculation of Completion Percentage in Pivot Table",
+            "excerpt": "### Bug description we created a pivot table chart to show the completion percentage of sales area, and enabled the subtotal and sum function, the target and actual amount is correct, but the subtotal and sum of completion is wrong, what I'd like to get is \" sum(actual_amount) / sum(target_amount)\","
+          },
+          {
+            "ref": "issue #21734",
+            "title": "Uncertainty intervals of forecast are wrong when it goes negative.",
+            "excerpt": "Uncertainty intervals of forecast never goes negative. #### How to reproduce the bug 1 Take any data that includes negative values. 2 Run a forecast, including uncertainty interval ### Expected results I'd expect the uncertainty to be around the forecast. ### Actual results The uncertainty interval "
+          },
+          {
+            "ref": "issue #33896",
+            "title": "Treemap tooltip  css",
+            "excerpt": "I create treemap chart. I found text appears cramped in the hover tooltip. How can I make it more beautiful? ![Image](https://github.com/user-attachments/assets/ff9b46e7-7247-40e1-b85b-0a60ac64fb50)"
+          },
+          {
+            "ref": "issue #33737",
+            "title": "\"Show chart description\" causes bottom of x-axis to be cut off heatmap in 5.0.0rc3",
+            "excerpt": "### Bug description The chart has plenty of room on the dashboard and I can see the x-axis fully when the description is hidden. But when I show it, the x-axis gets blocked: ![Image](https://github.com/user-attachments/assets/14316aac-31bc-47f9-8ca5-8d9b54d33f48) Here's the same chart looking good o"
+          },
+          {
+            "ref": "issue #20459",
+            "title": "[DECK.GL MULTIPLE LAYERS] Categorical color from scatterplot not used",
+            "excerpt": "In a deck.gl multiple layers I use a deck.gl scatterplot with a categorical color for the point color. It's working fine except that the categories color in legend is not the same as the point on the map. #### How to reproduce the bug 1. Create a deck.gl scatterplot chart 2. Put something in \"Point "
+          },
+          {
+            "ref": "issue #26254",
+            "title": "Bar chart spilling out past x-axis on both ends",
+            "excerpt": "Superset 3.1.0rc2: ![image](https://github.com/apache/superset/assets/7569808/d76404b5-73a7-4478-b5c9-7145f98b6291) How it looks previously in 3.0.0: ![image](https://github.com/apache/superset/assets/7569808/6430e2ab-7cba-41a0-a498-1d23251bea4f) Here's the chart config in 3.1.0rc2: ![image](https:/"
+          },
+          {
+            "ref": "issue #33905",
+            "title": "Last month doesn't appear on X axis for Time Series Line Chart",
+            "excerpt": "### Bug description 1. Go to a time series line chart with monthly data from the example datasets 2. Chose month time grain ## Expected Last month's label should show on X axis ## Actual Last month's label doesn\u2019t show ### Screenshots/recordings ![Image](https://github.com/user-attachments/assets/20"
+          },
+          {
+            "ref": "issue #35833",
+            "title": "Dropdown menu shows 2 scroll bars.",
+            "excerpt": "## Screenshot <img width=\"1508\" height=\"880\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/576e9149-a8a0-453d-a410-13488acc2385\" /> ## Description The dropdown menu shows 2 scroll bars. Using Superset 6.0.0rc2 ## Design input `design:suggest` Should show only 1 scroll bar."
+          },
+          {
+            "ref": "issue #31033",
+            "title": "Inconsistent Default Padding for Different Charts",
+            "excerpt": "### Bug description Depending on the type selected, the Superset UI will display charts with different alignments. Ideally they would be centered inside the card. Currently the padding differs on both sides leading to more whitespace on the left or right. For Example: 1. Go to Dashboard 2. Click `+ "
+          },
+          {
+            "ref": "issue #33882",
+            "title": "Show value on stacked bar chart is incorrect",
+            "excerpt": "### Bug description The stacking functionality for bar charts was introduced recently, but it broke the option to show bar values. When selecting Only Total, then Instead of displaying the number for each bar, it now shows a single value for the entire cluster. In the example below, it should show t"
+          },
+          {
+            "ref": "issue #33757",
+            "title": "Tooltip ignores metric format in line charts (always shows dollar format) \u2013 Regression in 4.X",
+            "excerpt": "### Bug description In most recent Superset, tooltips in line charts display metric values using a dollar format ($,.2f), even when: - The metric is clearly set to a percentage format (e.g., .2%) in the axis config - The \"Show Values\" option correctly displays the value as a percentage - The Series "
+          }
+        ],
+        "label": "supported",
+        "why": "All eleven issues are charting correctness/cosmetic defects"
+      },
+      {
+        "claim": "Publish a working Helm chart for 6.x + fix `psycopg2`** | Blocks all official deployment/upgrade of the current release; 4 converging P8s, highest aggregate engagement | #38456, #36763, #31026, #31431 | Unblock chart publishing pipeline (#35461 root cause); bundle/document `psycopg2` in lean image; ship `appVersion: 6.1.x`. Owner + date this week. |",
+        "sources": [
+          {
+            "ref": "issue #35461",
+            "title": "Helm chart 0.15.1 released but not published",
+            "excerpt": "### Bug description 0.15.1 superset chart was released last week, but has not yet been published into https://apache.github.io/superset repository. Above from that, current 0.15.1 chart is broken, due to infamous Bitnami repositories being deprecated. Not trying to get on politics or suggest what to"
+          },
+          {
+            "ref": "discussion #31431",
+            "title": "ModuleNotFoundError: No module named 'psycopg2' during k8 installation",
+            "excerpt": "Hi, While deploying super set using helm chart, i am getting \"ModuleNotFoundError: No module named 'psycopg2'\" in superset-init-db"
+          },
+          {
+            "ref": "issue #31026",
+            "title": "Helm upgrade from 4.0.2 -> 4.1.1 fails as psycopg2 is no longer bundled into lean Superset image",
+            "excerpt": "### Bug description Hi I want to upgrade Superset 4.0.2 to 4.1.1 version using Helm. helm upgrade --install superset superset/superset -f values.yaml I got issue with psycopg2. Help, please. ### Screenshots/recordings Defaulted container \"superset-init-db\" out of: superset-init-db, wait-for-postgres"
+          },
+          {
+            "ref": "issue #38456",
+            "title": "Superset 6.0.0 Helm Chart Not Available",
+            "excerpt": "### Bug description Superset 6.0.0 Helm Chart Not Available. Note that https://github.com/apache/superset/issues/35461 may prevent a chart being published even if one is created as evidenced by 0.15.3 and 0.15.4 missing from https://artifacthub.io/packages/helm/superset/superset. ### Screenshots/rec"
+          },
+          {
+            "ref": "discussion #36763",
+            "title": "[Helm] Request to update Helm Chart to support Superset 6.0.0",
+            "excerpt": "Apache Superset version 6.0.0 was recently released (Dec 18, 2025). Currently, the official Helm chart in the apache/superset repository still points to appVersion: 5.0.0. Version 6.0.0 contains several major breaking changes (Ant Design 5 upgrade, Flask-AppBuilder 5.0, removal of AUTH_OID, and inte"
+          }
+        ],
+        "label": "supported",
+        "why": "Four P8s plus #35461 root cause all support Helm/psycopg2 action"
+      },
+      {
+        "claim": "Embedding broken after 6.0.0 upgrade** | Regression, production-blocking for embedders; guest-token 403 | #39682, (rel. #31872) | Reproduce against 6.0.0\u21926.1.0; treat as release-blocking patch. |",
+        "sources": [
+          {
+            "ref": "issue #31872",
+            "title": "4.0.2 - Imported charts shows error on embedding (Guest user cannot modify chart payload)",
+            "excerpt": "### Bug description Bug description \u300cGuest user cannot modify chart payload\u300d Error is displayed for imported charts. ### Screenshots/recordings How to reproduce the bug I embedded Apache Superset in the web application (Spring Boot and Angular) with authentication. After connection, the superset is "
+          },
+          {
+            "ref": "issue #39682",
+            "title": "after upgrading to 6.0.0 the embedding dashboarding is broken",
+            "excerpt": "### Bug description 4.1.4 embedding was working fine with guest token but after upgrading to 6.0.0 it is broken In 4.1.4 the emedding dashboarding was working fine with superset. But recently we have upgraded our superset to 6.0.0 version it is giving below error. { \"errors\": [ { \"message\": \"403 For"
+          }
+        ],
+        "label": "supported",
+        "why": "#39682 confirms post-6.0.0 embedding 403; #31872 related embedding bug"
+      },
+      {
+        "claim": "Strategic features w/ standout demand** | Semantic Layer SIP + Drill-to-detail download are top latent demand | #35003, #27607 | Drive SIP-182 to decision; scope #27607 as a quick win. |",
+        "sources": [
+          {
+            "ref": "issue #35003",
+            "title": "[SIP-182] Semantic Layer Support in Apache Superset",
+            "excerpt": "# SIP: Semantic Layer Support in Apache Superset ## Abstract This proposal introduces changes to Apache Superset to better support semantic layers and external data modeling systems. The changes include (1) the definition of an \u201cExplorable\u201d interface (a Python protocol), and (2) the introduction of "
+          },
+          {
+            "ref": "discussion #27607",
+            "title": "Unable to download detailed records in \"Drill to detail\" and \"Drill to Detail by\"",
+            "excerpt": "I am not be able to downloaded the detailed records in both \"Drill to detail\" and \"Drill to Detail by\" options. I can see the detailed records but see no option to download them. Screenshot shows a bar graph created. Then I right click on a dimension and select \"Drill to detail by \" . I see the deta"
+          }
+        ],
+        "label": "supported",
+        "why": "Sources confirm Semantic Layer SIP and drill-to-detail download demand"
+      },
+      {
+        "claim": "6.x auth/viz regressions** | Worked in 5.0.0, broke in 6.x; users reverting | #37892, #36117, #34998 | Bundle into a 6.1.x patch; add upgrade regression tests for auth + table viz. |",
+        "sources": [
+          {
+            "ref": "issue #37892",
+            "title": "Time-series Table: sorting always based on first column in v6.0.0",
+            "excerpt": "### Bug description ### Summary In Superset **6.0.0**, the **Time-series Table** visualization always sorts rows based on the **first column**, regardless of which column header is clicked. This prevents proper sorting on time series columns. ### Steps to Reproduce 1. Create or open a **Time-series "
+          },
+          {
+            "ref": "issue #36117",
+            "title": "Remote user auth (AUTH_REMOTE_USER) worked well in 5.0.0, experienced issues with 6.0.0rc2",
+            "excerpt": "### Bug description I did not have much success trying to setup REMOTE_AUTH in Superset 6.0.0 (rc2), in the end I reverted to 5.0.0 and it worked immediately (with config as in `superset_config.py` below). Could this be a regression bug (or breaking change)? ```from flask_appbuilder.security.manager"
+          },
+          {
+            "ref": "issue #34998",
+            "title": "superset 6.0.0rc1-dev use External database \uff0cerror",
+            "excerpt": "### Bug description pod err log .and 10.168.8.60 is ok .tag is 6.0.0rc1-dev 2025/09/03 07:56:26 Waiting for: tcp://10.168.8.60:6432 2025/09/03 07:56:26 Problem with dial: dial tcp 10.168.8.60:6432: connect: no route to host. Sleeping 1s 2025/09/03 07:56:27 Problem with dial: dial tcp 10.168.8.60:643"
+          }
+        ],
+        "label": "partial",
+        "why": "#34998 is DB-connectivity, not auth/viz regression; weakens cluster"
+      },
+      {
+        "claim": "MCP service reliability** | Flagship new capability failing on SSO/app-context | #40225, #38806 | Reproduce with Keycloak/Okta JWT; gate MCP GA on these. |",
+        "sources": [
+          {
+            "ref": "issue #40225",
+            "title": "MCP user resolution not working in release 6.1.0",
+            "excerpt": "> I'm getting the same error message on 6.1.0 with Keycloak. > > 2026-05-18 12:27:22,599:ERROR:superset.mcp_service.middleware:MCP tool error: tool=health_check, user_id=None, duration_ms=62, error_type=ToolError, error=Error calling tool 'health_check': No authenticated user found. Tried: > - g.use"
+          },
+          {
+            "ref": "issue #38806",
+            "title": "MCP service: Flask app context error when running via 'superset mcp run'",
+            "excerpt": "## Bug Description Running `superset mcp run --host 0.0.0.0 --port 5008` starts the MCP server successfully and JWT authentication works, but tool execution immediately fails with a Flask application context error, terminating the session. ## Environment - Superset version: 6.1.0rc1 (Docker image `a"
+          }
+        ],
+        "label": "supported",
+        "why": "Both sources confirm MCP SSO/app-context failures"
+      },
+      {
+        "claim": "Versioning/history SIP cluster** | Strong, coordinated latent demand; needs consolidation not 5 parallel efforts | #33044, #36145, #39492, #39464, #37427 | Convene SIP owners; merge into one roadmap track (archive \u2192 soft-delete \u2192 version history). |",
+        "sources": [
+          {
+            "ref": "issue #39492",
+            "title": "[SIP-210] Entity Version History for Dashboards, Charts, and Datasets",
+            "excerpt": "## [SIP] Entity Version History for Dashboards, Charts, and Datasets | | | |---------|--------| | **Status** | Open for Voting | | **Authors** | Mike Bridge ([@mikebridge](https://github.com/mikebridge)) | | **Created** | 2026-05-08 | | **Discussion** | _To be added once posted to dev@superset.apach"
+          },
+          {
+            "ref": "issue #39464",
+            "title": "[SIP-208] Soft Delete for Charts, Dashboards, and Datasets",
+            "excerpt": "## [SIP] Soft Delete for Charts, Dashboards, and Datasets > **Terminology note**: The delete action is labelled **Archive** in the UI and the restore action is labelled **Unarchive**. The backend implementation uses standard soft-delete naming (`deleted_at`, `soft_delete()`, `/restore`) because thes"
+          },
+          {
+            "ref": "issue #36145",
+            "title": "[SIP-192] Labeled Version History + Restore",
+            "excerpt": "## [SIP] Proposal for Labeled Version History + Restore ### Motivation Some users want to be able to roll back and have a process to save states of their virtual datasets or other assets. It was mentioned here also https://github.com/apache/superset/issues/30436 that some people were talking about o"
+          },
+          {
+            "ref": "issue #37427",
+            "title": "[SIP-203] Git-backed Version Control for Datasets in Apache Superset",
+            "excerpt": "# SIP: Git-backed Version Control for Datasets in Apache Superset ## 1. Motivation Apache Superset is widely used as a self-service BI and data exploration tool. While charts and dashboards are visually inspectable and often reviewed collaboratively, **datasets\u2014especially SQL-based virtual datasets\u2014"
+          },
+          {
+            "ref": "issue #33044",
+            "title": "[SIP-163] Archiving Dashboards",
+            "excerpt": "*Please make sure you are familiar with the SIP process documented* [here](https://github.com/apache/superset/issues/5602). The SIP will be numbered by a committer upon acceptance. ## [SIP] Proposal for Archiving Dashboards ### Motivation Dashboards have 2 states published and draft. However, there "
+          }
+        ],
+        "label": "supported",
+        "why": "All five SIPs form the versioning/history cluster"
+      },
+      {
+        "claim": "High-demand quick-win features** | Cheap, long-standing annoyances | #18451, #31982 | Both look low-effort; schedule as polish wins. |",
+        "sources": [
+          {
+            "ref": "discussion #18451",
+            "title": "Make possible to disable the annoying \"This dashboard is currently force refreshing\" message",
+            "excerpt": "Is your feature request related to a problem? Please describe. With Superset 1.0, it seems a new toast has been added for when you have auto-refresh in a dashboard: \"This dashboard is currently force refreshing; the next force refresh will be in 10 seconds.\" This is super-annoying because it distrac"
+          },
+          {
+            "ref": "discussion #31982",
+            "title": "Allow target Attribute in Markdown Links for Opening Links in a New Tab",
+            "excerpt": "Issue When creating a dashboard and using Markdown to create a hyperlink (<a>), the target attribute is stripped, even if explicitly included in the raw Markdown input. This prevents the ability to use target=\"_blank\" to open links in a new tab, which is a common use case in dashboards. Upon reviewi"
+          }
+        ],
+        "label": "supported",
+        "why": "Both are long-standing low-effort feature annoyances"
+      },
+      {
+        "claim": "DB-engine SQL correctness** | Invalid generated SQL per dialect; data-trust risk | #35414, #33235, #32879, #29378, #36776, #39951, #34784 | Triage by engine; prioritize ClickHouse (multiple) + Oracle. |",
+        "sources": [
+          {
+            "ref": "issue #34784",
+            "title": "[Superset 6.0.0rc1] Calculated Column isn't working and generate wrong SQL with ClickHouse",
+            "excerpt": "### Bug description Calculated Column isn't working with ClickHouse. The engine doesnt generate proper SQL 1. Define a calculated column , let's say: `name_test` by this sql: `toString('This is a test name')` 2. Create a table chart and show that `name_test` 3. Update to refesh the table. This is th"
+          },
+          {
+            "ref": "issue #29378",
+            "title": "Calculated column jinja templating fails in ORDER BY clause ",
+            "excerpt": "### Bug description When attempting to use a calculated column that uses jinja templating as the metric in a bar chart, the jinja placeholders are included in the `ORDER BY` clause of the executed query, rather than being replaced with rendered SQL string. The template renders correctly in the `SELE"
+          },
+          {
+            "ref": "issue #36776",
+            "title": "Table Drill to detail by date error",
+            "excerpt": "### Bug description Version\uff1a6.0.0 ChartType: Table 1. Drill to detail by datetime (Time Grain is Day) 2. SQL does not run according to the logic `toStartOfDay(toDateTime(\"signup_done_time\")) = toDateTime ('2025 -12-18 00:00: 00')`. It's a direct string assignment, like this ``` SQL AND \"signup_done_"
+          },
+          {
+            "ref": "issue #32879",
+            "title": "Field names with multiple spaces cause unexpected error, need nontrivial manual fix",
+            "excerpt": "**TL;DR:** Please **update field name handling so that an SQL field with multiple spaces in its name is handled correctly**. If that is not trivial, please update the error message to help the user find the issue and fix it using the CUSTOM SQL feature. --- ### Bug description #### Steps to reproduc"
+          },
+          {
+            "ref": "issue #39951",
+            "title": "Superset 6.0.0 bug: Could not convert string '849' to numeric",
+            "excerpt": "### Bug description I encountered an error in my Superset 6.0.0. We recently updated, and several charts are failing with the following error: DB engine error: Could not convert string '849' to numeric. This may be triggered by: Issue #1011 - Superset encountered an unexpected error. The query for t"
+          },
+          {
+            "ref": "issue #33235",
+            "title": "Filtering on Boolean columns has a limitation in Snowflake (and possibly other databases)",
+            "excerpt": "### Bug description In chart creator, I can't apply a filter on a Boolean column (e.g. to just return rows where the column is `True`) when using Snowflake. The generated Snowflake SQL isn't valid, because `IS True` isn't valid in Snowflake. This is the generated SQL: ``` SELECT COUNT(*) AS \"count\" "
+          },
+          {
+            "ref": "issue #35414",
+            "title": "[6.0.0-RC2] Oracle Database Bar Char Error: ORA-00979: not a GROUP BY expression",
+            "excerpt": "### Bug description Steps to Reproduce 1. Create database connection to Oracle 19.24 using cx_Oracle. 2. Create a bar chart visualization. 3. Get Chart Error \"Data error\" 4. Open View query.When \"Formatted\" = False \u2192 SQL query is valid. When \"Formatted\" = True \u2192 SQL query becomes invalid, Superset g"
+          }
+        ],
+        "label": "supported",
+        "why": "All cited issues are per-dialect SQL-correctness bugs"
+      },
+      {
+        "claim": "Remaining 6.x regressions (RBAC/API/data)** | JWT count:0, permission dropdown, user-delete, theming | #39834, #39967, #38629, #36878 | Fold into 6.1.x patch train. |",
+        "sources": [
+          {
+            "ref": "issue #39834",
+            "title": "DatabaseRestApi.get_list and DatasetRestApi.get_list return count:0 for JWT-authenticated Admin users in 6.0.1",
+            "excerpt": "### Bug description # DatabaseRestApi.get_list and DatasetRestApi.get_list return count:0 for JWT-authenticated Admin users in 6.0.1 **Labels:** `bug`, `needs-triage` --- ## Bug description When authenticating via the REST API using a JWT Bearer token (`POST /api/v1/security/login`), the `/api/v1/da"
+          },
+          {
+            "ref": "issue #38629",
+            "title": "6.0.0 - Deleting a user via the GUI fails with IntegrityError on MariaDB",
+            "excerpt": "### Bug description # Bug: Deleting a user via the GUI fails with IntegrityError on MariaDB ## Summary When attempting to delete a user via the Superset Security UI (`Settings \u2192 List Users \u2192 Delete`), the operation fails silently in the UI with \"There was an issue deleting record\" and raises an `Int"
+          },
+          {
+            "ref": "issue #36878",
+            "title": "Apache Superset 6.0.0 Global echartsOptionsOverrides and specific echartsOptionsOverridesByChartType",
+            "excerpt": "## \ud83d\udc1e Issue: Custom Theme Tokens Not Applying to Charts in Superset 6.0.0 ### Environment * **Apache Superset:** 6.0.0 * **Theme Type:** Custom UI Theme (via UI Theme Administration) * **Rendering Engine:** Ant Design (UI) + ECharts (Charts) --- ## \ud83d\udcf8 Screenshots ### UI Theme Applied (No Visible Chang"
+          },
+          {
+            "ref": "issue #39967",
+            "title": "Permission dropdown in `Role Edit Form` fails to echo names of bound permissions",
+            "excerpt": "### Bug description 1. Have superset 6.1.0rc3 installed 2. Go to `Settings` -> `List Roles` 3. Edit a `Role` such as `Public`, the Role must have some permission bound 4. Open the `Permission` dropdown, there's a toast saying `There was an error loading permissions.` At the same time, you will find "
+          }
+        ],
+        "label": "supported",
+        "why": "Confirms JWT count:0, permission dropdown, user-delete, theming"
+      },
+      {
+        "claim": "Native-filter & export friction** | Workflow blockers + a perf freeze | #33361, #24511, #34135, #33206, #38926, #28713 | Fix #33361 (clear-all breaks required filter) and #38926 (6s freeze) first. |",
+        "sources": [
+          {
+            "ref": "issue #28713",
+            "title": "Problem Exporting Charts as Image",
+            "excerpt": "### Bug description Hi Superset Community, I have a problem exporting Charts as Image, from multiple Dashboards and instance of Superset. ### How to reproduce the bug 1. Go to a Dashboards with Charts 2. Click the three dots on the top right of a charts 3. Download => Download as Image ### Screensho"
+          },
+          {
+            "ref": "issue #38926",
+            "title": "[Bug] UI freezes / browser hangs for 6 seconds every time \"Download as image\" is clicked on a chart. freeze does not improve on repeated downloads",
+            "excerpt": "### Bug description Every time I click Download as image on a chart, the entire Superset UI locks up for roughly 6 seconds (longer on complex charts like large tables or Deck.gl maps). The page becomes completely unresponsive during this time, I cannot interact with anything. Once the freeze passes,"
+          },
+          {
+            "ref": "issue #33361",
+            "title": "\"Clear All Filters\" sets required time filter to 'No filter', causing downstream filters to error",
+            "excerpt": "### Bug description When using native filters with cascading dependencies in Apache Superset, clearing all filters using the \"Clear All Filters\" button causes the required time range filter (e.g., `\"Last week\"`) to be set to `No filter`. Because this time filter is marked as non-optional (`enableEmp"
+          },
+          {
+            "ref": "issue #33206",
+            "title": "Incorrect filtering for numeric values with different decimal precision",
+            "excerpt": "### Bug description ### Summary There is an issue with filtering numeric values in Superset when values have different numbers of digits after the decimal point. ### Steps to Reproduce 1. Add a filter for a numeric field that contains both integer and decimal values (e.g., 21, 21.8, 25.35, etc.). !["
+          },
+          {
+            "ref": "issue #34135",
+            "title": "Dashboard Filter dropdown input obscured on smaller screens views",
+            "excerpt": "# Bug Description When using a dashboard filter of type Value, the dropdown menu overlaps and hides the input field on smaller screen resolutions or when browser zoom is increased. ## Reproduction 1. Go to the example Sales Dashboard 2. Reduce screen height (with devtools) 3. Click on a select filte"
+          },
+          {
+            "ref": "issue #24511",
+            "title": "Dependent Filter Issue :- If the parent Filter value is changed then the dependent filter with  previous selected value is not getting removed if its not in the dependent filter data(options) ",
+            "excerpt": "How to reproduce the bug 1. Create a Filter Name **A** 2. Create a Filter Name **B** 3. Tick the checkbox the **Values are dependent on other filters** in Filter **B** and select **A** in **VALUES DEPENDENT ON** 4. Click on **Save** 5. Select some value in filter **A** 6. Data API call will be done "
+          }
+        ],
+        "label": "supported",
+        "why": "All six confirm native-filter friction plus image-export freeze"
+      },
+      {
+        "claim": "Charting cosmetic/correctness long tail** | Polish; many bounty/good-first-issue | #33882, #21734, #33757, #32260, #31033, #35833, #33896, #26254, #33737, #33905, #20459 | Bundle as a \"viz papercuts\" community sprint. |",
+        "sources": [
+          {
+            "ref": "issue #32260",
+            "title": "Issue with Incorrect Subtotal and Sum Calculation of Completion Percentage in Pivot Table",
+            "excerpt": "### Bug description we created a pivot table chart to show the completion percentage of sales area, and enabled the subtotal and sum function, the target and actual amount is correct, but the subtotal and sum of completion is wrong, what I'd like to get is \" sum(actual_amount) / sum(target_amount)\","
+          },
+          {
+            "ref": "issue #21734",
+            "title": "Uncertainty intervals of forecast are wrong when it goes negative.",
+            "excerpt": "Uncertainty intervals of forecast never goes negative. #### How to reproduce the bug 1 Take any data that includes negative values. 2 Run a forecast, including uncertainty interval ### Expected results I'd expect the uncertainty to be around the forecast. ### Actual results The uncertainty interval "
+          },
+          {
+            "ref": "issue #33896",
+            "title": "Treemap tooltip  css",
+            "excerpt": "I create treemap chart. I found text appears cramped in the hover tooltip. How can I make it more beautiful? ![Image](https://github.com/user-attachments/assets/ff9b46e7-7247-40e1-b85b-0a60ac64fb50)"
+          },
+          {
+            "ref": "issue #33737",
+            "title": "\"Show chart description\" causes bottom of x-axis to be cut off heatmap in 5.0.0rc3",
+            "excerpt": "### Bug description The chart has plenty of room on the dashboard and I can see the x-axis fully when the description is hidden. But when I show it, the x-axis gets blocked: ![Image](https://github.com/user-attachments/assets/14316aac-31bc-47f9-8ca5-8d9b54d33f48) Here's the same chart looking good o"
+          },
+          {
+            "ref": "issue #20459",
+            "title": "[DECK.GL MULTIPLE LAYERS] Categorical color from scatterplot not used",
+            "excerpt": "In a deck.gl multiple layers I use a deck.gl scatterplot with a categorical color for the point color. It's working fine except that the categories color in legend is not the same as the point on the map. #### How to reproduce the bug 1. Create a deck.gl scatterplot chart 2. Put something in \"Point "
+          },
+          {
+            "ref": "issue #26254",
+            "title": "Bar chart spilling out past x-axis on both ends",
+            "excerpt": "Superset 3.1.0rc2: ![image](https://github.com/apache/superset/assets/7569808/d76404b5-73a7-4478-b5c9-7145f98b6291) How it looks previously in 3.0.0: ![image](https://github.com/apache/superset/assets/7569808/6430e2ab-7cba-41a0-a498-1d23251bea4f) Here's the chart config in 3.1.0rc2: ![image](https:/"
+          },
+          {
+            "ref": "issue #33905",
+            "title": "Last month doesn't appear on X axis for Time Series Line Chart",
+            "excerpt": "### Bug description 1. Go to a time series line chart with monthly data from the example datasets 2. Chose month time grain ## Expected Last month's label should show on X axis ## Actual Last month's label doesn\u2019t show ### Screenshots/recordings ![Image](https://github.com/user-attachments/assets/20"
+          },
+          {
+            "ref": "issue #35833",
+            "title": "Dropdown menu shows 2 scroll bars.",
+            "excerpt": "## Screenshot <img width=\"1508\" height=\"880\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/576e9149-a8a0-453d-a410-13488acc2385\" /> ## Description The dropdown menu shows 2 scroll bars. Using Superset 6.0.0rc2 ## Design input `design:suggest` Should show only 1 scroll bar."
+          },
+          {
+            "ref": "issue #31033",
+            "title": "Inconsistent Default Padding for Different Charts",
+            "excerpt": "### Bug description Depending on the type selected, the Superset UI will display charts with different alignments. Ideally they would be centered inside the card. Currently the padding differs on both sides leading to more whitespace on the left or right. For Example: 1. Go to Dashboard 2. Click `+ "
+          },
+          {
+            "ref": "issue #33882",
+            "title": "Show value on stacked bar chart is incorrect",
+            "excerpt": "### Bug description The stacking functionality for bar charts was introduced recently, but it broke the option to show bar values. When selecting Only Total, then Instead of displaying the number for each bar, it now shows a single value for the entire cluster. In the example below, it should show t"
+          },
+          {
+            "ref": "issue #33757",
+            "title": "Tooltip ignores metric format in line charts (always shows dollar format) \u2013 Regression in 4.X",
+            "excerpt": "### Bug description In most recent Superset, tooltips in line charts display metric values using a dollar format ($,.2f), even when: - The metric is clearly set to a percentage format (e.g., .2%) in the axis config - The \"Show Values\" option correctly displays the value as a percentage - The Series "
+          }
+        ],
+        "label": "supported",
+        "why": "All eleven issues are charting cosmetic/correctness long tail"
+      },
+      {
+        "claim": "Frontend architecture & PDF reports** | Internal health + document-quality reports | #39209, #39965 | Advance SIPs through review. |",
+        "sources": [
+          {
+            "ref": "issue #39209",
+            "title": "[SIP-207] Replace Redux with Zustand and TanStack Query",
+            "excerpt": "## [SIP-207] Replace Redux with Zustand and TanStack Query This proposal introduces a clear separation between two fundamentally different kinds of state that are currently handled by the same tool: **UI state** (edit mode, active tabs, modal visibility; things that live only in the browser) and **s"
+          },
+          {
+            "ref": "issue #39965",
+            "title": "[SIP-212] Browser Print PDF Dashboard Reports",
+            "excerpt": "## [SIP-212] Proposal for Browser Print PDF Dashboard Reports ## Motivation Superset dashboard PDF reports are generated from browser screenshots. This is a reasonable default for visual dashboard snapshots, but it is not ideal for document-style reports. The screenshot-based approach has several li"
+          }
+        ],
+        "label": "supported",
+        "why": "Sources are SIP-207 frontend rearchitecture and SIP-212 PDF reports"
+      }
+    ]
+  }
+}
