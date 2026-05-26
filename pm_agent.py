@@ -22,9 +22,11 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import contextlib
 import datetime as dt
 import json
 import math
+import os
 import re
 import subprocess
 import sys
@@ -36,6 +38,94 @@ REPO_NAME = "superset"
 HERE = Path(__file__).resolve().parent
 DATA_DIR = HERE / "data"
 NOW = dt.datetime.now(dt.timezone.utc)
+
+# ----------------------------------------------------------------------------
+# Tracing (Arize / OpenInference) — optional
+# ----------------------------------------------------------------------------
+#
+# Spans are emitted via the OpenInference semantic conventions so Arize renders
+# them as LLM / tool / chain steps. The Claude call goes through the `claude`
+# CLI (a subprocess), which auto-instrumentation can't see — so we wrap it in a
+# manual LLM span below. Everything here is best-effort: if the deps or the
+# ARIZE_API_KEY / ARIZE_SPACE_ID env vars are missing, the agent runs
+# identically, just without spans.
+
+# OpenInference attribute keys, as plain strings (verified against
+# openinference-semantic-conventions). Kept as literals so this module imports
+# fine even when the tracing deps aren't installed.
+OI_SPAN_KIND = "openinference.span.kind"
+OI_LLM_MODEL = "llm.model_name"
+OI_LLM_PROVIDER = "llm.provider"
+OI_LLM_SYSTEM = "llm.system"
+OI_LLM_INVOCATION_PARAMS = "llm.invocation_parameters"
+OI_INPUT_VALUE = "input.value"
+OI_OUTPUT_VALUE = "output.value"
+OI_INPUT_MIME = "input.mime_type"
+OI_OUTPUT_MIME = "output.mime_type"
+OI_TOOL_NAME = "tool.name"
+OI_METADATA = "metadata"
+
+_TRACER = None
+_TRACER_PROVIDER = None
+
+
+def setup_tracing(project_name: str) -> bool:
+    """Wire up Arize tracing if creds + deps are present. Returns True if active."""
+    global _TRACER, _TRACER_PROVIDER
+    api_key = os.getenv("ARIZE_API_KEY")
+    space_id = os.getenv("ARIZE_SPACE_ID")
+    if not api_key or not space_id:
+        print(
+            "  tracing disabled (set ARIZE_API_KEY + ARIZE_SPACE_ID to enable)",
+            file=sys.stderr,
+        )
+        return False
+    try:
+        from arize.otel import register
+
+        _TRACER_PROVIDER = register(
+            space_id=space_id,
+            api_key=api_key,
+            project_name=project_name,
+        )
+        _TRACER = _TRACER_PROVIDER.get_tracer(__name__)
+        print(f"  tracing -> Arize project '{project_name}'", file=sys.stderr)
+        return True
+    except Exception as e:  # never let observability break the pipeline
+        print(f"  tracing setup failed ({e!r}); continuing without it", file=sys.stderr)
+        return False
+
+
+def shutdown_tracing() -> None:
+    """Flush + shut down so buffered spans export before the process exits."""
+    if _TRACER_PROVIDER is not None:
+        try:
+            _TRACER_PROVIDER.force_flush()
+            _TRACER_PROVIDER.shutdown()
+        except Exception:
+            pass
+
+
+@contextlib.contextmanager
+def span(name: str, kind: str = "CHAIN", attributes: dict | None = None):
+    """Start an OpenInference span, or a no-op (yields None) when tracing is off."""
+    if _TRACER is None:
+        yield None
+        return
+    with _TRACER.start_as_current_span(name) as sp:
+        sp.set_attribute(OI_SPAN_KIND, kind)
+        _set_attrs(sp, attributes or {})
+        yield sp
+
+
+def _set_attrs(sp, mapping: dict) -> None:
+    """Set span attributes, skipping None values; no-op when sp is None."""
+    if sp is None:
+        return
+    for key, value in mapping.items():
+        if value is not None:
+            sp.set_attribute(key, value)
+
 
 # ----------------------------------------------------------------------------
 # Shell helpers
@@ -386,7 +476,44 @@ Rules:
 def call_claude(prompt: str, model: str = "opus", timeout: int = 600) -> str:
     print(f"  calling Claude ({model}) to synthesize report...", file=sys.stderr)
     cmd = ["claude", "-p", "--model", model]
-    return run(cmd, stdin=prompt, timeout=timeout).strip()
+    with span(
+        "claude.synthesize_report",
+        kind="LLM",
+        attributes={
+            OI_LLM_MODEL: model,
+            OI_LLM_PROVIDER: "anthropic",
+            OI_LLM_SYSTEM: "anthropic",
+            OI_LLM_INVOCATION_PARAMS: json.dumps(
+                {"model": model, "invocation": "claude -p (CLI headless)", "timeout_s": timeout}
+            ),
+            OI_INPUT_VALUE: prompt,
+            OI_INPUT_MIME: "text/plain",
+            "llm.input_messages.0.message.role": "user",
+            "llm.input_messages.0.message.content": prompt,
+        },
+    ) as sp:
+        out = run(cmd, stdin=prompt, timeout=timeout).strip()
+        # The CLI doesn't return token usage, so we record char counts plus a
+        # rough ~4-chars/token estimate as metadata (not as authoritative
+        # token_count attributes, which would imply a real usage figure).
+        _set_attrs(
+            sp,
+            {
+                OI_OUTPUT_VALUE: out,
+                OI_OUTPUT_MIME: "text/markdown",
+                "llm.output_messages.0.message.role": "assistant",
+                "llm.output_messages.0.message.content": out,
+                OI_METADATA: json.dumps(
+                    {
+                        "prompt_chars": len(prompt),
+                        "output_chars": len(out),
+                        "approx_prompt_tokens": len(prompt) // 4,
+                        "approx_output_tokens": len(out) // 4,
+                    }
+                ),
+            },
+        )
+        return out
 
 
 # ----------------------------------------------------------------------------
@@ -403,62 +530,129 @@ def main() -> int:
     ap.add_argument("--model", default="opus")
     ap.add_argument("--out", default=str(HERE / "report.md"))
     ap.add_argument("--skip-llm", action="store_true", help="fetch+score only")
+    ap.add_argument(
+        "--project-name",
+        default=os.getenv("ARIZE_PROJECT_NAME", "superset-pm-agent"),
+        help="Arize project name for traces",
+    )
+    ap.add_argument("--no-trace", action="store_true", help="disable Arize tracing")
     args = ap.parse_args()
 
     DATA_DIR.mkdir(exist_ok=True)
 
-    print("[1/4] Fetching GitHub data...", file=sys.stderr)
-    releases = fetch_releases(args.releases)
-    issues = fetch_issues(args.issues)
-    discussions = fetch_discussions(args.discussions)
-    items = issues + discussions
+    if not args.no_trace:
+        setup_tracing(args.project_name)
+    try:
+        return _run(args)
+    finally:
+        shutdown_tracing()
 
-    print("[2/4] Scoring & prioritizing...", file=sys.stderr)
-    assign_priorities(items)
 
-    # Persist raw + scored data for auditability.
-    (DATA_DIR / "releases.json").write_text(json.dumps(releases, indent=2))
-    scored = sorted((asdict(i) for i in items), key=lambda x: x["score"], reverse=True)
-    (DATA_DIR / "scored_items.json").write_text(json.dumps(scored, indent=2))
+def _run(args) -> int:
+    with span(
+        "pm_agent.run",
+        kind="AGENT",
+        attributes={
+            OI_INPUT_VALUE: json.dumps(
+                {
+                    "repo": f"{REPO_OWNER}/{REPO_NAME}",
+                    "issues": args.issues,
+                    "discussions": args.discussions,
+                    "releases": args.releases,
+                    "top": args.top,
+                    "model": args.model,
+                }
+            ),
+        },
+    ) as root:
+        print("[1/4] Fetching GitHub data...", file=sys.stderr)
+        with span("fetch_github_data", kind="CHAIN") as fsp:
+            with span(
+                "fetch_releases", kind="TOOL", attributes={OI_TOOL_NAME: "github_releases"}
+            ) as sp:
+                releases = fetch_releases(args.releases)
+                _set_attrs(sp, {"releases.count": len(releases)})
+            with span(
+                "fetch_issues", kind="TOOL", attributes={OI_TOOL_NAME: "github_issues_search"}
+            ) as sp:
+                issues = fetch_issues(args.issues)
+                _set_attrs(sp, {"issues.count": len(issues)})
+            with span(
+                "fetch_discussions",
+                kind="TOOL",
+                attributes={OI_TOOL_NAME: "github_discussions_graphql"},
+            ) as sp:
+                discussions = fetch_discussions(args.discussions)
+                _set_attrs(sp, {"discussions.count": len(discussions)})
+            items = issues + discussions
+            _set_attrs(
+                fsp,
+                {
+                    OI_OUTPUT_VALUE: json.dumps(
+                        {
+                            "releases": len(releases),
+                            "issues": len(issues),
+                            "discussions": len(discussions),
+                        }
+                    )
+                },
+            )
 
-    dist: dict[str, int] = {}
-    for it in items:
-        dist[it.priority] = dist.get(it.priority, 0) + 1
-    print(f"    priority distribution: {json.dumps(dist)}", file=sys.stderr)
+        print("[2/4] Scoring & prioritizing...", file=sys.stderr)
+        dist: dict[str, int] = {}
+        with span("score_and_prioritize", kind="CHAIN") as ssp:
+            assign_priorities(items)
+            for it in items:
+                dist[it.priority] = dist.get(it.priority, 0) + 1
+            _set_attrs(
+                ssp,
+                {
+                    OI_OUTPUT_VALUE: json.dumps(dist),
+                    "items.total": len(items),
+                },
+            )
+        print(f"    priority distribution: {json.dumps(dist)}", file=sys.stderr)
 
-    if args.skip_llm:
-        print("[3/4] --skip-llm set; wrote data/ only.", file=sys.stderr)
+        # Persist raw + scored data for auditability.
+        (DATA_DIR / "releases.json").write_text(json.dumps(releases, indent=2))
+        scored = sorted((asdict(i) for i in items), key=lambda x: x["score"], reverse=True)
+        (DATA_DIR / "scored_items.json").write_text(json.dumps(scored, indent=2))
+
+        if args.skip_llm:
+            print("[3/4] --skip-llm set; wrote data/ only.", file=sys.stderr)
+            _set_attrs(root, {OI_OUTPUT_VALUE: "skipped (--skip-llm)"})
+            return 0
+
+        print("[3/4] Synthesizing report with Claude...", file=sys.stderr)
+        prompt = build_prompt(items, releases, args.top)
+        (DATA_DIR / "prompt.txt").write_text(prompt)
+        report_body = call_claude(prompt, model=args.model)
+
+        print("[4/4] Writing report...", file=sys.stderr)
+        # The script supplies its own title/metadata header, so drop a duplicate
+        # top-level H1 (and any leading "*Generated...*" subtitle) from the model.
+        lines = report_body.splitlines()
+        while lines and (
+            lines[0].startswith("# ")
+            or lines[0].strip() in ("", "---")
+            or lines[0].lstrip().startswith("*Generated")
+        ):
+            lines.pop(0)
+        report_body = "\n".join(lines).strip()
+        header = (
+            f"# Apache Superset — PM Signal Report\n\n"
+            f"_Generated {NOW.strftime('%Y-%m-%d %H:%M UTC')} • "
+            f"{len(issues)} issues + {len(discussions)} discussions analyzed • "
+            f"top {args.top} fed to Claude ({args.model})_\n\n"
+            f"Priority scale: **P8 = highest, P3 = lowest.** "
+            f"Priority distribution across corpus: `{json.dumps(dist)}`\n\n"
+            f"---\n\n"
+        )
+        Path(args.out).write_text(header + report_body + "\n")
+        _set_attrs(root, {OI_OUTPUT_VALUE: args.out})
+        print(f"\n✅ Report written to {args.out}", file=sys.stderr)
+        print(f"   Raw + scored data in {DATA_DIR}/", file=sys.stderr)
         return 0
-
-    print("[3/4] Synthesizing report with Claude...", file=sys.stderr)
-    prompt = build_prompt(items, releases, args.top)
-    (DATA_DIR / "prompt.txt").write_text(prompt)
-    report_body = call_claude(prompt, model=args.model)
-
-    print("[4/4] Writing report...", file=sys.stderr)
-    # The script supplies its own title/metadata header, so drop a duplicate
-    # top-level H1 (and any leading "*Generated...*" subtitle) from the model.
-    lines = report_body.splitlines()
-    while lines and (
-        lines[0].startswith("# ")
-        or lines[0].strip() in ("", "---")
-        or lines[0].lstrip().startswith("*Generated")
-    ):
-        lines.pop(0)
-    report_body = "\n".join(lines).strip()
-    header = (
-        f"# Apache Superset — PM Signal Report\n\n"
-        f"_Generated {NOW.strftime('%Y-%m-%d %H:%M UTC')} • "
-        f"{len(issues)} issues + {len(discussions)} discussions analyzed • "
-        f"top {args.top} fed to Claude ({args.model})_\n\n"
-        f"Priority scale: **P8 = highest, P3 = lowest.** "
-        f"Priority distribution across corpus: `{json.dumps(dist)}`\n\n"
-        f"---\n\n"
-    )
-    Path(args.out).write_text(header + report_body + "\n")
-    print(f"\n✅ Report written to {args.out}", file=sys.stderr)
-    print(f"   Raw + scored data in {DATA_DIR}/", file=sys.stderr)
-    return 0
 
 
 if __name__ == "__main__":

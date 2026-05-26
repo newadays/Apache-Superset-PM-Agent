@@ -1,0 +1,21 @@
+# Superset PM Agent — Python dependencies
+#
+# The core pipeline (fetch + score + report) uses only the standard library;
+# it shells out to the `gh` and `claude` CLIs, which are NOT pip-installable
+# and must be installed + authenticated separately (see README).
+#
+# The packages below are needed only for the optional Arize / OpenInference
+# tracing. If you don't trace, you can skip installing these and run with
+# --no-trace (or simply leave ARIZE_API_KEY / ARIZE_SPACE_ID unset).
+#
+#   pip install -r requirements.txt
+#
+# Recommended: install into a dedicated virtualenv. arize-otel pulls in a newer
+# opentelemetry (>=1.42) that can conflict with other globally-installed
+# OpenTelemetry consumers (e.g. google-adk, the gcp exporters).
+
+arize-otel>=0.12.0
+openinference-semantic-conventions>=0.1.30
+
+# wrapt < 1.16 lacks `wrapt.patches`, which openinference imports — pin above it.
+wrapt>=1.16
