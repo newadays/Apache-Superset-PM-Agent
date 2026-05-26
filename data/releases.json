@@ -1,0 +1,202 @@
+[
+  {
+    "tag": "superset-helm-chart-0.15.5",
+    "name": "superset-helm-chart-0.15.5",
+    "published_at": "2026-05-04T22:55:08Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/superset-helm-chart-0.15.5",
+    "body": "Apache Superset is a modern, enterprise-ready business intelligence web application"
+  },
+  {
+    "tag": "6.1.0",
+    "name": "6.1.0",
+    "published_at": "2026-05-13T18:32:25Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/6.1.0",
+    "body": "Hello Community,\r\n\r\nThe Apache Superset team is pleased to announce that Superset\r\n6.1.0 has just been released.\r\n\r\nApache Superset is a modern, enterprise-ready business intelligence web application.\r\n\r\nThe official source release:\r\nhttps://downloads.apache.org/superset/6.1.0\r\n\r\nThe PyPI package:\r\nhttps://pypi.org/project/apache_superset/6.1.0\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.1.0/CHANGELOG/6.1.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.1.0/UPDATING.md\r\n\r\nIf you have any usage questions or have problems when upgrading or\r\nfind any issues with enhancements included in this release, please\r\ndon't hesitate to let us know by sending feedback."
+  },
+  {
+    "tag": "6.1.0rc3",
+    "name": "6.1.0rc3",
+    "published_at": "2026-05-01T13:23:23Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/6.1.0rc3",
+    "body": "Subject: [VOTE] Release Apache Superset 6.1.0 based on Superset 6.1.0rc3\r\n\r\nHello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 6.1.0.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/6.1.0rc3/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/6.1.0rc3\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.1.0rc3/CHANGELOG/6.1.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.1.0rc3/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThis vote also includes the following new NPM and PyPI packages:\r\nhttps://www.npmjs.com/package/@apache-superset/core/v/0.1.0-rc3\r\nhttps://pypi.org/project/apache-superset-core/0.1.0rc3/\r\nhttps://pypi.org/project/apache-superset-extensions-cli/0.1.0rc3/\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "6.1.0rc2",
+    "name": "6.1.0rc2",
+    "published_at": "2026-04-17T18:01:39Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/6.1.0rc2",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 6.1.0.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/6.1.0rc2/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/6.1.0rc2\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.1.0rc2/CHANGELOG/6.1.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.1.0rc2/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThis vote also includes the following new NPM and PyPI packages:\r\nhttps://www.npmjs.com/package/@apache-superset/core/v/0.1.0-rc2\r\nhttps://pypi.org/project/apache-superset-core/0.1.0rc2/\r\nhttps://pypi.org/project/apache-superset-extensions-cli/0.1.0rc2/\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "6.1.0rc1",
+    "name": "6.1.0rc1",
+    "published_at": "2026-03-11T14:36:39Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/6.1.0rc1",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 6.1.0.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/6.1.0rc1/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/6.1.0rc1\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.1.0rc1/CHANGELOG/6.1.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.1.0rc1/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThis vote also includes the following new NPM and PyPI packages:\r\nhttps://www.npmjs.com/package/@apache-superset/core/v/0.1.0-rc1\r\nhttps://pypi.org/project/apache-superset-core/0.1.0rc1/\r\nhttps://pypi.org/project/apache-superset-extensions-cli/0.1.0rc1/\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "superset-helm-chart-0.15.4",
+    "name": "superset-helm-chart-0.15.4",
+    "published_at": "2026-02-19T01:13:52Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/superset-helm-chart-0.15.4",
+    "body": "Apache Superset is a modern, enterprise-ready business intelligence web application"
+  },
+  {
+    "tag": "superset-helm-chart-0.15.3",
+    "name": "superset-helm-chart-0.15.3",
+    "published_at": "2026-02-10T19:55:08Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/superset-helm-chart-0.15.3",
+    "body": "Apache Superset is a modern, enterprise-ready business intelligence web application"
+  },
+  {
+    "tag": "6.0.1rc1",
+    "name": "6.0.1rc1",
+    "published_at": "2026-02-05T22:24:03Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/6.0.1rc1",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 6.0.1.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/6.0.1rc1/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/6.0.1rc1\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.0.1rc1/CHANGELOG/6.0.1.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.0.1rc1/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "superset-helm-chart-0.15.2",
+    "name": "superset-helm-chart-0.15.2",
+    "published_at": "2026-01-21T21:02:27Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/superset-helm-chart-0.15.2",
+    "body": "Apache Superset is a modern, enterprise-ready business intelligence web application"
+  },
+  {
+    "tag": "6.0.0",
+    "name": "6.0.0",
+    "published_at": "2025-12-18T18:18:13Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/6.0.0",
+    "body": "Hello Community,\r\n\r\nThe Apache Superset team is pleased to announce that Superset\r\n6.0.0 has just been released.\r\n\r\nApache Superset is a modern, enterprise-ready business intelligence web application.\r\n\r\nThe official source release:\r\nhttps://downloads.apache.org/superset/6.0.0\r\n\r\nThe PyPI package:\r\nhttps://pypi.org/project/apache_superset/6.0.0\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.0.0/CHANGELOG/6.0.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.0.0/UPDATING.md\r\n\r\nIf you have any usage questions or have problems when upgrading or\r\nfind any issues with enhancements included in this release, please\r\ndon't hesitate to let us know by sending feedback to this mailing\r\nlist.\r\n\r\n"
+  },
+  {
+    "tag": "6.0.0rc4",
+    "name": "6.0.0rc4",
+    "published_at": "2025-12-04T19:51:39Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/6.0.0rc4",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 6.0.0.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/6.0.0rc4/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/6.0.0rc4\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.0.0rc4/CHANGELOG/6.0.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.0.0rc4/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThe vote will be left open until at least 72 hours have passed and the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "6.0.0rc3",
+    "name": "6.0.0rc3",
+    "published_at": "2025-11-20T02:59:45Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/6.0.0rc3",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 6.0.0.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/6.0.0rc3/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/6.0.0rc3\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.0.0rc3/CHANGELOG/6.0.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.0.0rc3/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team\r\n"
+  },
+  {
+    "tag": "superset-helm-chart-0.15.1",
+    "name": "superset-helm-chart-0.15.1",
+    "published_at": "2025-09-23T18:47:52Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/superset-helm-chart-0.15.1",
+    "body": "Apache Superset is a modern, enterprise-ready business intelligence web application"
+  },
+  {
+    "tag": "6.0.0rc2",
+    "name": "6.0.0rc2",
+    "published_at": "2025-09-22T21:20:44Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/6.0.0rc2",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 6.0.0.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/6.0.0rc2/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/6.0.0rc2\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.0.0rc2/CHANGELOG/6.0.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.0.0rc2/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "4.1.4",
+    "name": "4.1.4",
+    "published_at": "2025-08-28T17:55:56Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/4.1.4",
+    "body": "The Apache Superset team is pleased to announce that Superset\r\n4.1.4 has just been released.\r\n\r\nApache Superset is a modern, enterprise-ready business intelligence web application.\r\n\r\nThe official source release:\r\nhttps://downloads.apache.org/superset/4.1.4\r\n\r\nThe PyPI package:\r\nhttps://pypi.org/project/apache_superset/4.1.4\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/4.1.4/CHANGELOG/4.1.4.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/4.1.4/UPDATING.md\r\n\r\nIf you have any usage questions or have problems when upgrading or find any issues\r\nwith enhancements included in this release, please don't hesitate to let us know."
+  },
+  {
+    "tag": "4.1.4rc1",
+    "name": "4.1.4rc1",
+    "published_at": "2025-08-23T01:44:01Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/4.1.4rc1",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 4.1.4.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/4.1.4rc1/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/4.1.4rc1\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/4.1.4rc1/CHANGELOG/4.1.4.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/4.1.4rc1/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "6.0.0rc1",
+    "name": "6.0.0rc1",
+    "published_at": "2025-08-18T22:57:31Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/6.0.0rc1",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 6.0.0.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/6.0.0rc1/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/6.0.0rc1\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/6.0.0rc1/CHANGELOG/6.0.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/6.0.0rc1/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "superset-helm-chart-0.15.0",
+    "name": "superset-helm-chart-0.15.0",
+    "published_at": "2025-08-07T14:33:13Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/superset-helm-chart-0.15.0",
+    "body": "Apache Superset is a modern, enterprise-ready business intelligence web application"
+  },
+  {
+    "tag": "superset-helm-chart-0.14.3",
+    "name": "superset-helm-chart-0.14.3",
+    "published_at": "2025-07-17T18:34:18Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/superset-helm-chart-0.14.3",
+    "body": "Apache Superset is a modern, enterprise-ready business intelligence web application"
+  },
+  {
+    "tag": "4.1.3",
+    "name": "4.1.3",
+    "published_at": "2025-07-11T19:27:16Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/4.1.3",
+    "body": "Hello Community,\r\n\r\nThe Apache Superset team is pleased to announce that Superset\r\n4.1.3 has just been released.\r\n\r\nApache Superset is a modern, enterprise-ready business intelligence web application.\r\n\r\nThe official source release:\r\nhttps://downloads.apache.org/superset/4.1.3\r\n\r\nThe PyPI package:\r\nhttps://pypi.org/project/apache-superset/4.1.3.post1\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/4.1.3/CHANGELOG/4.1.3.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/4.1.3/UPDATING.md\r\n\r\nIf you have any usage questions or have problems when upgrading or\r\nfind any issues with enhancements included in this release, please\r\ndon't hesitate to let us know by sending feedback to this mailing\r\nlist."
+  },
+  {
+    "tag": "5.0.0",
+    "name": "5.0.0",
+    "published_at": "2025-06-23T16:09:21Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/5.0.0",
+    "body": "Hello Community,\r\n\r\nThe Apache Superset team is pleased to announce that Superset\r\n5.0.0 has just been released.\r\n\r\nApache Superset is a modern, enterprise-ready business intelligence web application.\r\n\r\nThe official source release:\r\nhttps://downloads.apache.org/superset/5.0.0\r\n\r\nThe PyPI package:\r\nhttps://pypi.org/project/apache-superset/5.0.0\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/5.0.0/CHANGELOG/5.0.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/5.0.0/UPDATING.md\r\n\r\nIf you have any usage questions or have problems when upgrading or\r\nfind any issues with enhancements included in this release, please\r\ndon't hesitate to let us know."
+  },
+  {
+    "tag": "5.0.0rc4",
+    "name": "5.0.0rc4",
+    "published_at": "2025-06-18T17:24:04Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/5.0.0rc4",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 5.0.0.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/5.0.0rc4/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/5.0.0rc4\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/5.0.0rc4/CHANGELOG/5.0.0.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/5.0.0rc4/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "5.0.0rc3",
+    "name": "5.0.0rc3",
+    "published_at": "2025-05-29T12:15:24Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/5.0.0rc3",
+    "body": "# Apache Superset 5.0 Release Notes\r\n\r\nWe are thrilled to announce the release of Apache Superset 5.0, a major milestone that brings substantial improvements across the entire platform. This version delivers significant UX enhancements, performance optimizations, expanded database connectivity, and modernized data exploration capabilities. Built upon months of collaborative work, Superset 5.0 represents our commitment to providing an intuitive, powerful, and flexible data visualization and exploration platform that meets the needs of organizations of all sizes.\r\n\r\n## Numerous UX Improvements in Key Areas\r\n\r\nSuperset 5.0 brings substantial UX enhancements to elevate your data exploration experience:\r\n- Better filter experience with improved filter bar accessibility ([#30812](https://github.com/apache/superset/pull/30812)) and UI refinements ([#31449](https://github.com/apache/superset/pull/31449), [#31279](https://github.com/apache/superset/pull/31279))\r\n- Improved SQL Lab with a refreshed query history pane ([#31316](https://github.com/apache/superset/pull/31316)) and enhanced table metadata UI ([#29900](https://github.com/apache/superset/pull/29900))\r\n- Enhanced table data interaction with selection and copying capability in SQL Lab and dataset view ([#31602](https://github.com/apache/superset/pull/31602))\r\n- Upgraded Modal ([#31420](https://github.com/apache/superset/pull/31420)), Button ([#31623](https://github.com/apache/superset/pull/31623)), List ([#30963](https://github.com/apache/superset/pull/30963)), Avatar ([#30740](https://github.com/apache/superset/pull/30740)), Input ([#30730](https://github.com/apache/superset/pull/30730)), Switch ([#30731](https://github.com/apache/superset/pull/30731)) and other core UI components to Ant Design 5\r\n- Redesigned labels system for better organization and discoverability ([#31575](https://github.com/apache/superset/pull/31575))\r\n\r\n## Frontend Performance Improvements\r\n\r\nMajor optimizations to improve dashboard load times and overall responsiveness:\r\n- Lazy loading of heavy components like React Ace ([#29796](https://github.com/apache/superset/pull/29796)), moment-timezone ([#29791](https://github.com/apache/superset/pull/29791)), and rehype-raw ([#29855](https://github.com/apache/superset/pull/29855))\r\n- Migrated to React 17 ([#31961](https://github.com/apache/superset/pull/31961)) and TypeScript 5 ([#31979](https://github.com/apache/superset/pull/31979)) for improved performance and type safety\r\n- Implemented tree shaking for Ant Design icons ([#29787](https://github.com/apache/superset/pull/29787)) to reduce bundle size\r\n- Optimized dashboard components ([#31240](https://github.com/apache/superset/pull/31240), [#31241](https://github.com/apache/superset/pull/31241), [#31242](https://github.com/apache/superset/pull/31242)) to reduce unnecessary re-renders\r\n- Improved state management for native filters and cross filters ([#31243](https://github.com/apache/superset/pull/31243))\r\n- Replaced Moment.js with the lighter DayJS library ([#31310](https://github.com/apache/superset/pull/31310))\r\n\r\n## Database Connectivity Enhancements\r\n\r\n\r\n- Improved OAuth2 support for database connections ([#30674](https://github.com/apache/superset/pull/30674), [#30126](https://github.com/apache/superset/pull/30126), [#30082](https://github.com/apache/superset/pull/30082), [#30071](https://github.com/apache/superset/pull/30071)), including BigQuery, Trino, and Firebolt\r\n- Enhanced database engine specifications with additional time grains for Trino and Presto ([#30926](https://github.com/apache/superset/pull/30926)) and PostgreSQL ([#30325](https://github.com/apache/superset/pull/30325))\r\n- Better authentication with user impersonation support for StarRocks ([#28110](https://github.com/apache/superset/pull/28110))\r\n- Added connectors for YDB ([#31141](https://github.com/apache/superset/pull/31141)), Parseable ([#32052](https://github.com/apache/superset/pull/32052)), and Denodo Virtual DataPort ([#29927"
+  },
+  {
+    "tag": "4.1.3rc1",
+    "name": "4.1.3rc1",
+    "published_at": "2025-05-06T06:58:03Z",
+    "prerelease": true,
+    "url": "https://github.com/apache/superset/releases/tag/4.1.3rc1",
+    "body": "Hello Superset Community,\r\n\r\nThis is a call for the vote to release Apache Superset version 4.1.3.\r\n\r\nThe release candidate:\r\nhttps://dist.apache.org/repos/dist/dev/superset/4.1.3rc1/\r\n\r\nThe Git tag for the release:\r\nhttps://github.com/apache/superset/tree/4.1.3rc1\r\n\r\nThe CHANGELOG for the release:\r\nhttps://github.com/apache/superset/blob/4.1.3rc1/CHANGELOG/4.1.3.md\r\n\r\nThe instructions for updating to the release:\r\nhttps://github.com/apache/superset/blob/4.1.3rc1/UPDATING.md\r\n\r\nPublic keys are available at:\r\nhttps://www.apache.org/dist/superset/KEYS\r\n\r\nThe vote will be left open until at least 72 hours have passed\r\nand the necessary number of votes (3) have been reached.\r\n\r\nPlease vote accordingly:\r\n\r\n[ ] +1 approve\r\n[ ] +0 no opinion\r\n[ ] -1 disapprove with the reason\r\n\r\nThanks,\r\nThe Apache Superset Team"
+  },
+  {
+    "tag": "superset-helm-chart-0.14.2",
+    "name": "superset-helm-chart-0.14.2",
+    "published_at": "2025-04-09T15:46:55Z",
+    "prerelease": false,
+    "url": "https://github.com/apache/superset/releases/tag/superset-helm-chart-0.14.2",
+    "body": "Apache Superset is a modern, enterprise-ready business intelligence web application"
+  }
+]
